@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOIF MyBarFinder - Montpellier</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q86SEH0EQJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q86SEH0EQJ');
+    </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -1024,12 +1034,28 @@
                     bar.type.toLowerCase().includes(searchQuery) ||
                     bar.address.toLowerCase().includes(searchQuery)
                 );
+                
+                // Tracking recherche
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'search', {
+                        'search_term': searchQuery,
+                        'results_count': filtered.length
+                    });
+                }
             }
             
             if (selectedSearchFilters.length > 0) {
                 filtered = filtered.filter(bar =>
                     selectedSearchFilters.every(filterId => bar.features.includes(filterId))
                 );
+                
+                // Tracking utilisation filtres
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'filter_used', {
+                        'event_category': 'engagement',
+                        'filter_count': selectedSearchFilters.length
+                    });
+                }
             }
             
             renderSearchResults(filtered);
@@ -1477,6 +1503,14 @@
             document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
             document.getElementById(`${tabName}-content`).classList.add('active');
             
+            // Tracking changement d'onglet
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    'page_title': tabName === 'fiche' ? 'Fiche Bar' : 'Recherche',
+                    'page_location': window.location.href + '#' + tabName
+                });
+            }
+            
             if (tabName === 'recherche') {
                 performSearch();
             }
@@ -1514,6 +1548,14 @@
                 return;
             }
             
+            // Tracking Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'surprends_moi_click', {
+                    'event_category': 'engagement',
+                    'event_label': 'Bouton Surprends-moi'
+                });
+            }
+            
             // Réinitialiser les filtres
             selectedSearchFilters = [];
             updateSearchFilterUI();
@@ -1532,6 +1574,15 @@
             const card = createBarCard(randomBar, false);
             card.style.animation = 'slideIn 0.5s ease';
             container.appendChild(card);
+            
+            // Tracking du bar suggéré
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'bar_suggestion', {
+                    'event_category': 'engagement',
+                    'event_label': randomBar.name,
+                    'bar_type': randomBar.type
+                });
+            }
             
             showNotification(`🎲 ${randomBar.name} vous attend !`);
         }
