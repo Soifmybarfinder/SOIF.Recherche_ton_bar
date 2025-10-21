@@ -12,7 +12,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-Q86SEH0EQJ', {
-            'page_title': 'SOIF soif.mybarfinder@gmail.com',
+            'page_title': 'SOIF MyBarFinder',
             'page_location': window.location.href
         });
     </script>
@@ -161,13 +161,66 @@
             background: none; border: none; color: white; cursor: pointer; font-size: 16px;
             line-height: 1; padding: 0; width: 16px; height: 16px;
         }
+        .delete-filter-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        .filter-item.custom:hover .delete-filter-btn,
+        .search-filter-item.custom:hover .delete-filter-btn {
+            display: flex;
+        }
+        .delete-filter-btn:hover {
+            background: rgba(231, 76, 60, 1);
+            transform: scale(1.1);
+        }
+        .search-filter-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03); border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: all 0.2s;
+            margin: 4px; font-size: 13px; position: relative;
+        }
+        .add-filter-modal {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8); z-index: 3000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .add-filter-modal-content {
+            background: linear-gradient(135deg, #21152f, #1a0f24);
+            border-radius: 16px; max-width: 500px; width: 100%;
+            padding: 24px; border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        .add-filter-modal h2 {
+            margin-bottom: 20px; color: #ff8e8e; font-size: 24px;
+        }
+        .filter-preview {
+            background: rgba(255, 107, 107, 0.15); color: #ff8e8e;
+            padding: 8px 12px; border-radius: 6px; font-size: 13px;
+            font-weight: 600; display: inline-block; margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>SOIF</h1>
-            <p>MyBarFinder - Montpellier (<span id="totalBars">100</span> bars)</p>
+            <p>soif.mybarfinder@gmail.com</p>
+            <p style="margin-top: 8px; font-size: 13px;">(<span id="totalBars">100</span> bars)</p>
         </div>
 
         <div class="tabs">
@@ -223,6 +276,8 @@
 
         <div id="recherche-content" class="content">
             <input type="text" class="search-input" id="searchInput" placeholder="🔍 Rechercher par nom, type ou adresse">
+            
+            <button class="btn-primary" id="addFilterBtn">+ Ajouter un filtre personnalisé</button>
             
             <button class="btn-primary" id="showResultsBtn" style="margin-bottom: 20px;">
                 📍 Voir les résultats (<span id="resultCountBtn">0</span>)
@@ -351,13 +406,46 @@
         let bars = [];
         let editingBarId = null;
         let selectedSearchFilters = [];
+        let customFilters = {};
 
         function init() {
             bars = BARS_JSON;
+            loadCustomFilters();
             generateFormFilters();
             generateSearchFilters();
             renderBarsList();
             updateCounts();
+        }
+
+        function loadCustomFilters() {
+            try {
+                const savedFilters = localStorage.getItem('soif_custom_filters');
+                if (savedFilters) {
+                    customFilters = JSON.parse(savedFilters);
+                    // Fusionner avec les filtres par défaut
+                    Object.keys(customFilters).forEach(category => {
+                        if (!FILTERS[category]) {
+                            FILTERS[category] = [];
+                        }
+                        customFilters[category].forEach(filter => {
+                            // Vérifier si le filtre n'existe pas déjà
+                            if (!FILTERS[category].find(f => f.id === filter.id)) {
+                                FILTERS[category].push({...filter, custom: true});
+                            }
+                        });
+                    });
+                }
+            } catch (error) {
+                console.error('Erreur chargement filtres personnalisés:', error);
+            }
+        }
+
+        function saveCustomFilters() {
+            try {
+                localStorage.setItem('soif_custom_filters', JSON.stringify(customFilters));
+            } catch (error) {
+                console.error('Erreur sauvegarde filtres:', error);
+            }
         }
 
         function removeArticle(name) {
@@ -495,6 +583,9 @@
                 FILTERS[categoryKey].forEach(filter => {
                     const item = document.createElement('div');
                     item.className = 'filter-item';
+                    if (filter.custom) {
+                        item.classList.add('custom');
+                    }
                     
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
@@ -510,7 +601,7 @@
                     });
                     
                     item.addEventListener('click', function(e) {
-                        if (e.target !== checkbox && e.target !== label) {
+                        if (e.target !== checkbox && e.target !== label && !e.target.classList.contains('delete-filter-btn')) {
                             checkbox.checked = !checkbox.checked;
                             item.classList.toggle('active', checkbox.checked);
                         }
@@ -518,6 +609,20 @@
                     
                     item.appendChild(checkbox);
                     item.appendChild(label);
+                    
+                    // Ajouter le bouton de suppression si c'est un filtre personnalisé
+                    if (filter.custom) {
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-filter-btn';
+                        deleteBtn.innerHTML = '×';
+                        deleteBtn.title = 'Supprimer ce filtre';
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteCustomFilter(categoryKey, filter.id);
+                        });
+                        item.appendChild(deleteBtn);
+                    }
+                    
                     grid.appendChild(item);
                 });
                 
@@ -547,8 +652,24 @@
                     item.dataset.filterId = filter.id;
                     item.textContent = filter.label;
                     
-                    item.addEventListener('click', function() {
-                        toggleSearchFilter(filter.id);
+                    if (filter.custom) {
+                        item.classList.add('custom');
+                        
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-filter-btn';
+                        deleteBtn.innerHTML = '×';
+                        deleteBtn.title = 'Supprimer ce filtre';
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteCustomFilter(categoryKey, filter.id);
+                        });
+                        item.appendChild(deleteBtn);
+                    }
+                    
+                    item.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('delete-filter-btn')) {
+                            toggleSearchFilter(filter.id);
+                        }
                     });
                     
                     filtersDiv.appendChild(item);
@@ -669,6 +790,195 @@
             document.getElementById('filtersSection').style.display = 'block';
             document.getElementById('resultsSection').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAddFilterModal() {
+            const modal = document.createElement('div');
+            modal.className = 'add-filter-modal';
+            modal.id = 'addFilterModal';
+            
+            const content = document.createElement('div');
+            content.className = 'add-filter-modal-content';
+            
+            let html = '<h2>➕ Ajouter un filtre personnalisé</h2>';
+            
+            // Sélection de la catégorie
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Catégorie *</label>';
+            html += '<select class="form-input" id="filterCategory">';
+            html += '<option value="">-- Choisir une catégorie --</option>';
+            Object.keys(FILTERS).forEach(key => {
+                const label = key.replace(/_/g, ' ').toUpperCase();
+                html += `<option value="${key}">${label}</option>`;
+            });
+            html += '</select>';
+            html += '</div>';
+            
+            // Emoji
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Emoji (optionnel)</label>';
+            html += '<input type="text" class="form-input" id="filterEmoji" placeholder="🍺" maxlength="2">';
+            html += '</div>';
+            
+            // Nom du filtre
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Nom du filtre *</label>';
+            html += '<input type="text" class="form-input" id="filterName" placeholder="Ex: Bar associatif">';
+            html += '</div>';
+            
+            // Prévisualisation
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Prévisualisation :</label>';
+            html += '<div class="filter-preview" id="filterPreview">🔹 Votre filtre</div>';
+            html += '</div>';
+            
+            // Boutons
+            html += '<button class="btn-primary" id="confirmAddFilterBtn">✅ Ajouter le filtre</button>';
+            html += '<button class="btn-secondary" id="cancelAddFilterBtn">❌ Annuler</button>';
+            
+            content.innerHTML = html;
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Mise à jour de la prévisualisation en temps réel
+            const emojiInput = document.getElementById('filterEmoji');
+            const nameInput = document.getElementById('filterName');
+            const preview = document.getElementById('filterPreview');
+            
+            function updatePreview() {
+                const emoji = emojiInput.value.trim() || '🔹';
+                const name = nameInput.value.trim() || 'Votre filtre';
+                preview.textContent = `${emoji} ${name}`;
+            }
+            
+            emojiInput.addEventListener('input', updatePreview);
+            nameInput.addEventListener('input', updatePreview);
+            
+            // Confirmer
+            document.getElementById('confirmAddFilterBtn').addEventListener('click', () => {
+                const category = document.getElementById('filterCategory').value;
+                const emoji = emojiInput.value.trim();
+                const name = nameInput.value.trim();
+                
+                if (!category) {
+                    showNotification('⚠️ Choisissez une catégorie', 'error');
+                    return;
+                }
+                
+                if (!name || name.length < 2) {
+                    showNotification('⚠️ Le nom doit avoir au moins 2 caractères', 'error');
+                    return;
+                }
+                
+                // Créer l'ID du filtre
+                const filterId = name.toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]/g, '_')
+                    .replace(/_+/g, '_')
+                    .replace(/^_|_$/g, '');
+                
+                // Vérifier si le filtre existe déjà
+                if (FILTERS[category].find(f => f.id === filterId)) {
+                    showNotification('⚠️ Ce filtre existe déjà', 'error');
+                    return;
+                }
+                
+                // Ajouter le filtre
+                const newFilter = {
+                    id: filterId,
+                    label: emoji ? `${emoji} ${name}` : name,
+                    custom: true
+                };
+                
+                FILTERS[category].push(newFilter);
+                
+                // Sauvegarder dans les filtres personnalisés
+                if (!customFilters[category]) {
+                    customFilters[category] = [];
+                }
+                customFilters[category].push(newFilter);
+                saveCustomFilters();
+                
+                // Régénérer les filtres dans les formulaires
+                generateFormFilters();
+                generateSearchFilters();
+                
+                showNotification(`✅ Filtre "${newFilter.label}" ajouté !`);
+                closeAddFilterModal();
+            });
+            
+            // Annuler
+            document.getElementById('cancelAddFilterBtn').addEventListener('click', closeAddFilterModal);
+            
+            // Fermer en cliquant sur le fond
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeAddFilterModal();
+            });
+        }
+
+        function closeAddFilterModal() {
+            const modal = document.getElementById('addFilterModal');
+            if (modal) modal.remove();
+        }
+
+        function deleteCustomFilter(categoryKey, filterId) {
+            const filter = FILTERS[categoryKey].find(f => f.id === filterId);
+            if (!filter) return;
+            
+            if (!confirm(`Supprimer le filtre "${filter.label}" ?\n\nCe filtre sera retiré de toutes les fiches bar.`)) {
+                return;
+            }
+            
+            // Supprimer des filtres personnalisés
+            if (customFilters[categoryKey]) {
+                customFilters[categoryKey] = customFilters[categoryKey].filter(f => f.id !== filterId);
+                if (customFilters[categoryKey].length === 0) {
+                    delete customFilters[categoryKey];
+                }
+                saveCustomFilters();
+            }
+            
+            // Supprimer de la liste FILTERS
+            const index = FILTERS[categoryKey].findIndex(f => f.id === filterId);
+            if (index !== -1) {
+                FILTERS[categoryKey].splice(index, 1);
+            }
+            
+            // Supprimer de tous les bars
+            let modifiedCount = 0;
+            bars.forEach(bar => {
+                const originalLength = bar.features.length;
+                bar.features = bar.features.filter(f => f !== filterId);
+                if (bar.features.length < originalLength) {
+                    modifiedCount++;
+                }
+            });
+            
+            // Sauvegarder les bars
+            if (modifiedCount > 0) {
+                saveBars();
+            }
+            
+            // Supprimer des filtres de recherche sélectionnés
+            const wasSelected = selectedSearchFilters.includes(filterId);
+            selectedSearchFilters = selectedSearchFilters.filter(f => f !== filterId);
+            
+            // Régénérer toutes les interfaces
+            generateFormFilters();
+            generateSearchFilters();
+            renderBarsList();
+            
+            if (wasSelected) {
+                updateSelectedFilters();
+                performSearch();
+            }
+            
+            let message = `🗑️ Filtre "${filter.label}" supprimé`;
+            if (modifiedCount > 0) {
+                message += `\n(retiré de ${modifiedCount} bar${modifiedCount > 1 ? 's' : ''})`;
+            }
+            showNotification(message);
         }
 
         function renderSearchResults(filteredBars) {
@@ -935,6 +1245,7 @@
             
             document.getElementById('showResultsBtn').addEventListener('click', showResults);
             document.getElementById('backToFiltersBtn').addEventListener('click', backToFilters);
+            document.getElementById('addFilterBtn').addEventListener('click', showAddFilterModal);
             
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', performSearch);
