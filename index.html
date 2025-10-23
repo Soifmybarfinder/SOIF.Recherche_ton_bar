@@ -76,6 +76,14 @@
         }
         .form-input:focus { outline: none; border-color: #ff8e8e; }
         .form-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .form-input option {
+            background: #1a0f24;
+            color: white;
+            padding: 10px;
+        }
+        .form-input select {
+            background: rgba(0, 0, 0, 0.5);
+        }
         .category { margin-bottom: 25px; }
         .category-title {
             font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #ff8e8e;
@@ -507,27 +515,69 @@
         }
 
         function exportData() {
-            const dataStr = JSON.stringify(bars, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            const date = new Date().toISOString().split('T')[0];
-            link.download = `soif-bars-${date}.json`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            showNotification('✅ Fichier téléchargé avec succès !');
+            // Export combiné : bars + filtres personnalisés
+            const exportData = {
+                bars: bars,
+                customFilters: customFilters,
+                exportDate: new Date().toISOString(),
+                version: "1.0"
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            
+            // Détection mobile (iPhone, iPad, Android)
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Sur mobile : ouvrir dans une nouvelle fenêtre pour copier/partager
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                // Ouvrir dans un nouvel onglet
+                const newWindow = window.open(url, '_blank');
+                
+                if (newWindow) {
+                    showNotification('✅ Données ouvertes ! Copie ou partage le contenu');
+                } else {
+                    // Si le popup est bloqué, télécharger normalement
+                    downloadJSON(dataStr);
+                }
+                
+                // Nettoyer après 1 minute
+                setTimeout(() => URL.revokeObjectURL(url), 60000);
+            } else {
+                // Sur desktop : téléchargement classique
+                downloadJSON(dataStr);
+            }
             
             // Tracking export
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'export_data', {
                     'event_category': 'Données',
                     'event_label': 'Export JSON',
-                    'bars_count': bars.length
+                    'bars_count': bars.length,
+                    'custom_filters_count': Object.keys(customFilters).length,
+                    'device': isMobile ? 'mobile' : 'desktop'
                 });
             }
+        }
+        
+        function downloadJSON(dataStr) {
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            link.download = `soif-bars-${date}.json`;
+            
+            // Pour iOS Safari
+            link.setAttribute('target', '_blank');
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showNotification('✅ Fichier téléchargé avec succès !');
         }
 
         function importData(event) {
@@ -537,22 +587,87 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
-                    const importedBars = JSON.parse(e.target.result);
+                    const importedData = JSON.parse(e.target.result);
                     
-                    if (!Array.isArray(importedBars)) {
-                        showNotification('❌ Fichier invalide', 'error');
+                    // Vérifier si c'est le nouveau format (avec bars et customFilters)
+                    let importedBars = [];
+                    let importedFilters = {};
+                    
+                    if (importedData.bars && Array.isArray(importedData.bars)) {
+                        // Nouveau format combiné
+                        importedBars = importedData.bars;
+                        importedFilters = importedData.customFilters || {};
+                    } else if (Array.isArray(importedData)) {
+                        // Ancien format (juste un tableau de bars)
+                        importedBars = importedData;
+                    } else {
+                        showNotification('❌ Format de fichier invalide', 'error');
                         return;
                     }
                     
-                    if (confirm(`📥 Importer ${importedBars.length} bars ?\n\nCela remplacera votre base actuelle.`)) {
+                    if (importedBars.length === 0) {
+                        showNotification('❌ Aucun bar trouvé dans le fichier', 'error');
+                        return;
+                    }
+                    
+                    // Compter les filtres personnalisés
+                    const filtersCount = Object.values(importedFilters).reduce((acc, arr) => acc + arr.length, 0);
+                    
+                    let message = `📥 Importer ${importedBars.length} bars`;
+                    if (filtersCount > 0) {
+                        message += ` et ${filtersCount} filtre${filtersCount > 1 ? 's' : ''} personnalisé${filtersCount > 1 ? 's' : ''}`;
+                    }
+                    message += ' ?\n\nCela remplacera votre base actuelle.';
+                    
+                    if (confirm(message)) {
+                        // Importer les bars
                         bars = importedBars;
                         bars = sortBarsByName(bars);
                         saveBars();
+                        
+                        // Importer les filtres personnalisés
+                        if (filtersCount > 0) {
+                            customFilters = importedFilters;
+                            saveCustomFilters();
+                            
+                            // Fusionner avec FILTERS
+                            Object.keys(customFilters).forEach(category => {
+                                if (!FILTERS[category]) {
+                                    FILTERS[category] = [];
+                                }
+                                customFilters[category].forEach(filter => {
+                                    if (!FILTERS[category].find(f => f.id === filter.id)) {
+                                        FILTERS[category].push({...filter, custom: true});
+                                    }
+                                });
+                            });
+                            
+                            // Régénérer les filtres
+                            generateFormFilters();
+                            generateSearchFilters();
+                        }
+                        
                         renderBarsList();
                         updateCounts();
-                        showNotification(`✅ ${importedBars.length} bars importés !`);
+                        
+                        let successMsg = `✅ ${importedBars.length} bars importés !`;
+                        if (filtersCount > 0) {
+                            successMsg += ` + ${filtersCount} filtre${filtersCount > 1 ? 's' : ''}`;
+                        }
+                        showNotification(successMsg);
+                        
+                        // Tracking import
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'import_data', {
+                                'event_category': 'Données',
+                                'event_label': 'Import JSON',
+                                'bars_count': importedBars.length,
+                                'filters_count': filtersCount
+                            });
+                        }
                     }
                 } catch (error) {
+                    console.error('Erreur import:', error);
                     showNotification('❌ Erreur de lecture du fichier', 'error');
                 }
             };
