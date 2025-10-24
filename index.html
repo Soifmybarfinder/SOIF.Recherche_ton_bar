@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOIF MyBarFinder - Montpellier</title>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q86SEH0EQJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q86SEH0EQJ', {
+            'page_title': 'SOIF MyBarFinder',
+            'page_location': window.location.href
+        });
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a0f24 0%, #2d1b3d 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 500px; margin: 0 auto; background: #1a0f24; min-height: 100vh; }
+        .header {
+            background: linear-gradient(135deg, #4a0e4e 0%, #81236e 40%, #ab2567 70%, #ff006e 100%);
+            padding: 40px 24px 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 48px; font-weight: 200; letter-spacing: 12px; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.9; }
+        .tabs {
+            display: flex;
+            background: #21152f;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .tab {
+            flex: 1; padding: 16px; text-align: center; background: transparent; border: none;
+            color: rgba(255, 255, 255, 0.5); font-weight: 600; cursor: pointer; font-size: 14px;
+            transition: all 0.3s; position: relative;
+        }
+        .tab.active { color: #fff; }
+        .tab.active::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+        }
+        .content { padding: 24px; display: none; }
+        .content.active { display: block; }
+        .btn-primary {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 16px;
+            cursor: pointer; margin-bottom: 16px; transition: transform 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary {
+            width: 100%; padding: 16px; background: rgba(255,255,255,0.1); color: white;
+            border: none; border-radius: 12px; font-weight: 700; font-size: 16px;
+            cursor: pointer; margin-top: 10px;
+        }
+        .btn-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-input {
+            width: 100%; padding: 12px 16px; border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05);
+            color: white; font-size: 14px;
+        }
+        .form-input:focus { outline: none; border-color: #ff8e8e; }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .form-input option {
+            background: #1a0f24;
+            color: white;
+            padding: 10px;
+        }
+        .form-input select {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .category { margin-bottom: 25px; }
+        .category-title {
+            font-weight: 700; font-size: 15px; margin-bottom: 12px; color: #ff8e8e;
+            padding: 8px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3); border-radius: 8px;
+        }
+        .filter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .filter-item {
+            display: flex; align-items: center; gap: 8px; padding: 10px;
+            background: rgba(255, 255, 255, 0.03); border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: all 0.2s;
+        }
+        .filter-item:hover { background: rgba(255, 255, 255, 0.08); }
+        .filter-item.active {
+            background: rgba(255, 107, 107, 0.3); border-color: rgba(255, 107, 107, 0.5);
+        }
+        .filter-item input[type="checkbox"] { 
+            width: 18px; height: 18px; cursor: pointer; 
+        }
+        .filter-item label { font-size: 13px; cursor: pointer; flex: 1; }
+        .bar-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 16px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 16px; transition: all 0.3s;
+        }
+        .bar-card:hover {
+            transform: translateY(-4px); border-color: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.15);
+        }
+        .bar-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .bar-type { font-size: 13px; color: #ff8e8e; margin-bottom: 8px; }
+        .bar-address { font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; }
+        .bar-features { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .feature-badge {
+            background: rgba(255, 107, 107, 0.15); color: #ff8e8e; padding: 4px 10px;
+            border-radius: 6px; font-size: 11px; font-weight: 600;
+        }
+        .search-input {
+            width: 100%; padding: 14px 16px; border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05);
+            color: white; font-size: 14px; margin-bottom: 20px;
+        }
+        .search-input:focus { outline: none; border-color: #ff8e8e; }
+        .search-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .filters-search-section { margin-bottom: 20px; }
+        .filters-search-section h3 { font-size: 16px; margin-bottom: 15px; color: #ff8e8e; }
+        .search-filter-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03); border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: all 0.2s;
+            margin: 4px; font-size: 13px;
+        }
+        .search-filter-item:hover { background: rgba(255, 255, 255, 0.08); }
+        .search-filter-item.active {
+            background: rgba(255, 107, 107, 0.3); border-color: rgba(255, 107, 107, 0.5);
+        }
+        .notification {
+            position: fixed; top: 20px; right: 20px; padding: 14px 20px;
+            background: linear-gradient(135deg, #4ecca3, #3eb489); color: white;
+            border-radius: 12px; font-weight: 600; box-shadow: 0 8px 20px rgba(78, 204, 163, 0.4);
+            animation: slideIn 0.3s; z-index: 2000; max-width: 300px;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .btn-actions { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-edit, .btn-delete {
+            flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: 600;
+            cursor: pointer; font-size: 13px;
+        }
+        .btn-edit { background: rgba(78, 204, 163, 0.2); color: #4ecca3; }
+        .btn-delete { background: rgba(231, 76, 60, 0.2); color: #ff6b6b; }
+        .empty-state { text-align: center; padding: 60px 20px; color: rgba(255, 255, 255, 0.4); }
+        .selected-filters {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; min-height: 40px;
+            padding: 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.03);
+        }
+        .selected-filter-tag {
+            display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+            background: rgba(255, 107, 107, 0.3); border-radius: 6px; font-size: 12px; font-weight: 600;
+        }
+        .filter-remove {
+            background: none; border: none; color: white; cursor: pointer; font-size: 16px;
+            line-height: 1; padding: 0; width: 16px; height: 16px;
+        }
+        .delete-filter-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        .filter-item.custom:hover .delete-filter-btn,
+        .search-filter-item.custom:hover .delete-filter-btn {
+            display: flex;
+        }
+        .delete-filter-btn:hover {
+            background: rgba(231, 76, 60, 1);
+            transform: scale(1.1);
+        }
+        .search-filter-item {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03); border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; transition: all 0.2s;
+            margin: 4px; font-size: 13px; position: relative;
+        }
+        .add-filter-modal {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8); z-index: 3000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .add-filter-modal-content {
+            background: linear-gradient(135deg, #21152f, #1a0f24);
+            border-radius: 16px; max-width: 500px; width: 100%;
+            padding: 24px; border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        .add-filter-modal h2 {
+            margin-bottom: 20px; color: #ff8e8e; font-size: 24px;
+        }
+        .filter-preview {
+            background: rgba(255, 107, 107, 0.15); color: #ff8e8e;
+            padding: 8px 12px; border-radius: 6px; font-size: 13px;
+            font-weight: 600; display: inline-block; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SOIF</h1>
+            <p>soif.mybarfinder@gmail.com</p>
+            <p style="margin-top: 8px; font-size: 13px;">(<span id="totalBars">100</span> bars)</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="fiche">📝 Fiche Bar</button>
+            <button class="tab" data-tab="recherche">🔍 Recherche</button>
+        </div>
+
+        <div id="fiche-content" class="content active">
+            <button class="btn-primary" id="newBarBtn">+ Ajouter un nouveau bar</button>
+            
+            <div class="btn-grid">
+                <button class="btn-secondary" id="exportBtn">📥 Exporter</button>
+                <button class="btn-secondary" id="importBtn">📤 Importer</button>
+            </div>
+            <input type="file" id="fileInput" accept=".json" style="display: none;">
+            
+            <button class="btn-secondary" id="resetBtn" style="margin-bottom: 20px;">🔄 Réinitialiser (100 bars)</button>
+            
+            <div id="barFormContainer" style="display: none;">
+                <h3 style="margin-bottom: 20px; font-size: 20px;">Informations du bar</h3>
+                
+                <div class="form-group">
+                    <label class="form-label">Nom du bar *</label>
+                    <input type="text" class="form-input" id="barName" placeholder="Ex: Le Rockstore">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Type *</label>
+                    <input type="text" class="form-input" id="barType" placeholder="Ex: Bar Rock">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Adresse *</label>
+                    <input type="text" class="form-input" id="barAddress" placeholder="Ex: 20 Rue de Verdun, 34000 Montpellier">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Distance (km)</label>
+                    <input type="number" step="0.1" class="form-input" id="barDistance" placeholder="0.5">
+                </div>
+
+                <div class="filters-section">
+                    <h3 style="margin-bottom: 15px; font-size: 18px;">Caractéristiques</h3>
+                    <div id="formFiltersContainer"></div>
+                </div>
+
+                <button class="btn-primary" id="saveBtn">Enregistrer le bar</button>
+                <button class="btn-secondary" id="cancelBtn">Annuler</button>
+            </div>
+
+            <div id="barsList">
+                <h3 style="margin-bottom: 15px; font-size: 18px;">Bars enregistrés (<span id="barsCount">100</span>)</h3>
+                <div id="barsListContainer"></div>
+            </div>
+        </div>
+
+        <div id="recherche-content" class="content">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Rechercher par nom, type ou adresse">
+            
+            <div class="btn-grid">
+                <button class="btn-primary" id="addFilterBtn">+ Ajouter un filtre</button>
+                <button class="btn-primary" id="surpriseMeBtn">🎲 Surprends-moi !</button>
+            </div>
+            
+            <button class="btn-primary" id="showResultsBtn" style="margin-bottom: 20px;">
+                📍 Voir les résultats (<span id="resultCountBtn">0</span>)
+            </button>
+            
+            <div class="selected-filters" id="selectedFilters"></div>
+
+            <div class="filters-search-section" id="filtersSection">
+                <h3>Filtres disponibles</h3>
+                <div id="searchFiltersContainer"></div>
+            </div>
+
+            <div style="margin-top: 30px; display: none;" id="resultsSection">
+                <button class="btn-secondary" id="backToFiltersBtn" style="margin-bottom: 20px;">
+                    ⬅️ Retour aux filtres
+                </button>
+                <h3 style="margin-bottom: 15px; font-size: 18px;">Résultats (<span id="resultCount">0</span>)</h3>
+                <div id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FILTERS = {
+            quartiers: [
+                {id:'ecusson',label:'🛡️ Écusson'},{id:'antigone',label:'🏛️ Antigone'},{id:'comedie',label:'🎭 Comédie'},
+                {id:'gare',label:'🚂 Gare'},{id:'beaux_arts',label:'🎨 Beaux-Arts'},{id:'port_marianne',label:'⚓ Port Marianne'},
+                {id:'rives_lez',label:'🏞️ Rives du Lez'},{id:'hopitaux_fac',label:'🏫 Hôpitaux-Facultés'},
+                {id:'peyrou',label:'🏰 Peyrou'},{id:'plage',label:'🏖️ Plage'},{id:'figuerolles',label:'🏘️ Figuerolles'},
+                {id:'boutonnet',label:'🌳 Boutonnet'},{id:'lattes',label:'🏖️ Lattes'}
+            ],
+            types: [
+                {id:'bar_bieres',label:'🍺 Bar à bières'},{id:'bar_vins',label:'🍷 Bar à vins'},
+                {id:'bar_cocktails',label:'🍸 Bar à cocktails'},{id:'pub',label:'🍻 Pub'},
+                {id:'brasserie',label:'🍭 Brasserie'},{id:'cave_vin',label:'🍇 Cave à vin'},
+                {id:'guinguette',label:'🪕 Guinguette'},{id:'speakeasy',label:'🤫 Speakeasy'},
+                {id:'sport_tv',label:'⚽ Sports bar'},{id:'rooftop',label:'🏙️ Rooftop'},{id:'lounge',label:'🛋️ Lounge'},
+                {id:'boite_club',label:'💃 Boîte/Club'},{id:'cafe',label:'☕ Café'}
+            ],
+            ambiances: [
+                {id:'cosy',label:'🛋️ Cosy'},{id:'tendance',label:'✨ Tendance'},{id:'romantique',label:'❤️ Romantique'},
+                {id:'festif',label:'🎉 Festif'},{id:'calme',label:'🧘 Calme'},{id:'anime',label:'💃 Animé'},
+                {id:'convivial',label:'🤗 Convivial'},{id:'branche',label:'😎 Branché'},{id:'alternatif',label:'🎸 Alternatif'},
+                {id:'chic',label:'🎩 Chic'},{id:'decontracte',label:'👕 Décontracté'},{id:'underground',label:'🌑 Underground'},
+                {id:'intime',label:'🤫 Intime'}
+            ],
+            caracteristiques_rapides: [
+                {id:'terrasse',label:'☀️ Terrasse'},{id:'wifi',label:'📶 WiFi'},{id:'parking',label:'🅿️ Parking'},
+                {id:'afterwork',label:'💼 Afterwork'},{id:'tv',label:'📺 Écrans TV'},{id:'happy_hour',label:'🥂 Happy Hour'}
+            ],
+            niveau_sonore: [
+                {id:'silencieux',label:'🔇 Silencieux'},{id:'calme_sonore',label:'🔉 Calme'},
+                {id:'modere',label:'🔊 Modéré'},{id:'anime_sonore',label:'🔢 Animé'},
+                {id:'tres_bruyant',label:'🔊🔊 Très bruyant'}
+            ],
+            parfait_pour: [
+                {id:'couples',label:'❤️ Couples'},{id:'famille_enfants',label:'👨‍👩‍👧 Famille avec enfants'},
+                {id:'groupe_petit',label:'👤 Groupe < 5'},{id:'groupe_moyen',label:'👥 Groupe 5-10'},
+                {id:'groupe_grand',label:'👨‍👩‍👧‍👦 Groupe > 10'},{id:'evenements_prives',label:'🎊 Événements privés'},
+                {id:'afterwork_parfait',label:'💼 Afterwork'},{id:'anniversaire',label:'🎂 Anniversaire'},
+                {id:'solo',label:'🧑 Solo'},{id:'rendez_vous',label:'💑 Rendez-vous'}
+            ],
+            boissons: [
+                {id:'cocktails_signature',label:'🍸 Cocktails'},{id:'vins_naturels',label:'🍷 Vins naturels'},
+                {id:'bieres_artisanales',label:'🍺 Bières artisanales'},{id:'bieres_locales',label:'🍺 Bières artisanales locales'},
+                {id:'craft',label:'🍻 Craft'},{id:'whiskies',label:'🥃 Whiskies'},
+                {id:'rhum',label:'🏝️ Rhums'},{id:'gins',label:'🌿 Gins'},
+                {id:'prosecco',label:'🥂 Prosecco'},{id:'sans_alcool',label:'🧃 Sans alcool'},
+                {id:'mocktails',label:'🥤 Mocktails'},{id:'spiritueux',label:'🥃 Spiritueux'},
+                {id:'shots',label:'🥃 Shots'},{id:'cafe',label:'☕ Café'},{id:'the',label:'🍵 Thé'}
+            ],
+            nourriture: [
+                {id:'planches',label:'🧀 Planches'},{id:'tapas',label:'🥘 Tapas'},{id:'vegan',label:'🌱 Végan'},
+                {id:'vegetarien',label:'🥦 Végétarien'},{id:'gluten_free',label:'🌾 Sans gluten'},{id:'burgers',label:'🍔 Burgers'},
+                {id:'carte_complete',label:'📋 Carte complète'},{id:'menus',label:'📜 Menus'},{id:'brunch',label:'🥐 Brunch'},
+                {id:'pizzas',label:'🍕 Pizzas'},{id:'snacking',label:'🥪 Snacking'}
+            ],
+            ensoleillement: [
+                {id:'jamais',label:'🌑 Jamais'},{id:'matin',label:'🌅 Matin'},{id:'midi',label:'🌞 Midi'},
+                {id:'apres_midi',label:'🌇 Après-midi'},{id:'soir',label:'🌆 Soir'},
+                {id:'terrasse_ensoleillee',label:'☀️ Terrasse ensoleillée'},{id:'terrasse_ombragee',label:'🌳 Terrasse ombragée'}
+            ],
+            clientele: [
+                {id:'18_25',label:'🧑 18-25 ans'},{id:'25_35',label:'👨 25-35 ans'},{id:'35_50',label:'👩 35-50 ans'},
+                {id:'50_plus',label:'🧓 50+ ans'},{id:'tous_ages',label:'👪 Tous âges'},
+                {id:'etudiants',label:'🎓 Étudiants'},{id:'business',label:'💼 Business'}
+            ],
+            musiques: [
+                {id:'rock',label:'🎸 Rock'},{id:'pop',label:'🎤 Pop'},{id:'jazz',label:'🎷 Jazz'},
+                {id:'lounge_music',label:'🎹 Lounge'},{id:'electro',label:'🎧 Électro'},{id:'techno',label:'💿 Techno'},
+                {id:'hip_hop',label:'🎙️ Hip-Hop'},{id:'indie',label:'🎵 Indie'},{id:'classique',label:'🎻 Classique'},
+                {id:'variete',label:'📻 Variété'},{id:'chanson_francaise',label:'🇫🇷 Chanson française'},
+                {id:'latino',label:'🕺 Latino'},{id:'metal',label:'🤘 Metal'},{id:'disco',label:'🪩 Disco'}
+            ],
+            evenements: [
+                {id:'karaoke',label:'🎤 Karaoké'},{id:'open_mic',label:'🎭 Scène ouverte'},{id:'stand_up',label:'🎪 Stand-up'},
+                {id:'dj_set',label:'🎧 DJ Set'},{id:'concerts',label:'🎵 Concerts'},{id:'quiz',label:'❓ Quiz'},
+                {id:'retransmissions',label:'📺 Retransmissions sport'},{id:'degustation',label:'🍷 Dégustations'},
+                {id:'cours_cocktails',label:'🍹 Cours de cocktails'}
+            ],
+            service: [
+                {id:'chic',label:'✨ Chic'},{id:'familial',label:'👨‍👩‍👧‍👦 Familial'},{id:'decontracte_service',label:'😎 Décontracté'},
+                {id:'amical',label:'🤝 Amical'},{id:'rapide',label:'⚡ Rapide'},{id:'attentionne',label:'🤗 Attentionné'}
+            ],
+            propositions: [
+                {id:'babyfoot',label:'⚽ Babyfoot'},{id:'flechettes',label:'🎯 Fléchettes'},{id:'billard',label:'🎱 Billard'},
+                {id:'jeux_societe',label:'🎲 Jeux de société'},{id:'jeux_video',label:'🎮 Jeux vidéo'},
+                {id:'galerie_art',label:'🎨 Galerie d\'art'},{id:'jeux_enfants',label:'🧸 Jeux pour enfants'},
+                {id:'espace_jeux_exterieur',label:'🛝 Près d\'un espace jeux enfants extérieurs'},
+                {id:'petanque',label:'🎯 Pétanque'}
+            ],
+            assise: [
+                {id:'canapes',label:'🛋️ Canapés'},{id:'bancs',label:'🪑 Bancs'},{id:'mange_debout',label:'🧍 Mange-debout'},
+                {id:'tables',label:'🍽️ Tables'},{id:'comptoir',label:'🧇 Comptoir'},
+                {id:'poufs',label:'💺 Poufs'},{id:'fauteuils',label:'🪑 Fauteuils'}
+            ],
+            acces_pmr: [
+                {id:'plain_pied',label:'🚪 Accès de plain-pied'},{id:'rampe',label:'♿ Rampe d\'accès'},
+                {id:'ascenseur',label:'🔼 Ascenseur'},{id:'toilettes_pmr',label:'🚻 Toilettes adaptées'},
+                {id:'personnel_forme',label:'👥 Personnel formé'},{id:'places_reservees',label:'🪑 Places réservées'}
+            ]
+        };
+
+        const BARS_JSON = [{"id":1,"name":"Les 3 Singes","type":"Bar concert","address":"Rue des Étuves, 34000 Montpellier","distance":0.4,"features":["concerts","rock","ecusson","alternatif","festif"]},{"id":2,"name":"Le Alhambra Taberna","type":"Bar latino","address":"Rue Alexandre Cabanel, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","festif","ecusson","latino"]},{"id":3,"name":"L'Antirouille","type":"Bar concert / Club","address":"12 Rue Anatole-France, 34000 Montpellier","distance":0.8,"features":["ecusson","boite_club","rock","electro","techno","indie","dj_set","concerts","festif","alternatif","underground"]},{"id":4,"name":"L'Arbre Blanc","type":"Bar rooftop","address":"Avenue Raymond Dugrand, 34000 Montpellier","distance":1.2,"features":["rooftop","chic","bar_cocktails","port_marianne"]},{"id":5,"name":"L'Australian Café","type":"Pub australien","address":"108 Rue de Rhodes, 34000 Montpellier","distance":1.3,"features":["pub","bar_bieres","ecusson","sport_tv"]},{"id":6,"name":"Un Bar et Jivay","type":"Bar à bière","address":"Square de la Babote, 34000 Montpellier","distance":0.6,"features":["ecusson","comedie","bar_bieres","brasserie","festif","anime","convivial","branche","decontracte","terrasse","afterwork","happy_hour","modere","anime_sonore","groupe_petit","groupe_moyen","groupe_grand","afterwork_parfait","bieres_artisanales","bieres_locales","craft","whiskies","rhum","gins","cafe","the","apres_midi","terrasse_ensoleillee","18_25","25_35","35_50","tous_ages","etudiants","rock","electro","decontracte_service","amical","bancs","mange_debout","tables"]},{"id":7,"name":"Barberousse","type":"Pub pirate","address":"6 Rue Boussairolles, 34000 Montpellier","distance":0.4,"features":["festif","ecusson","pub"]},{"id":8,"name":"La Barbote","type":"Bar microbrasserie","address":"1 Rue des Deux Ponts, 34000 Montpellier","distance":2.5,"features":["bar_bieres","terrasse","calme"]},{"id":9,"name":"Le Barri","type":"Bar","address":"4 Boulevard Louis Blanc, 34000 Montpellier","distance":0.5,"features":["ecusson","convivial","bar_cocktails","terrasse"]},{"id":10,"name":"The Beehive","type":"Pub","address":"15 Rue du Plan d'Agde, 34000 Montpellier","distance":0.4,"features":["pub","bar_bieres","ecusson","convivial","terrasse"]},{"id":11,"name":"Le BelAmour","type":"Bar restaurant","address":"1 Rue Louis Lumière, 34970 Lattes","distance":3.5,"features":["lattes","terrasse","bar_vins","romantique"]},{"id":12,"name":"Le Berthom","type":"Bar à bières","address":"5 Rue Boussairolles, 34000 Montpellier","distance":0.1,"features":["bar_bieres","ecusson","convivial"]},{"id":13,"name":"Le Black Out","type":"Bar rock","address":"6 Rue de la Vieille Intendance, 34000 Montpellier","distance":0.6,"features":["wifi","happy_hour","ecusson","bar_bieres","rock","karaoke","concerts","festif","underground"]},{"id":14,"name":"The Black Sheep","type":"Pub alternatif","address":"21 Boulevard Louis Blanc, 34000 Montpellier","distance":1,"features":["concerts","bar_bieres","alternatif","beaux_arts","pub"]},{"id":15,"name":"Le Bockale","type":"Bar à bières","address":"2 Rue de la République, 34000 Montpellier","distance":0.8,"features":["bar_bieres","convivial","terrasse"]},{"id":16,"name":"Le Bonsoir","type":"Bar lounge","address":"6 Rue de la Croix d'Or, 34000 Montpellier","distance":0.4,"features":["lounge","bar_cocktails","ecusson","cosy","romantique"]},{"id":17,"name":"Le Broc Café","type":"Café bar","address":"Rue du Faubourg de Nîmes, 34000 Montpellier","distance":1.3,"features":["terrasse","happy_hour","ecusson","brasserie","cafe","convivial","calme"]},{"id":18,"name":"Le Burnoutbar","type":"Bar e-sport","address":"60 Bis Avenue du Pont Juvénal, 34000 Montpellier","distance":1.8,"features":["jeux","bar_cocktails","antigone","convivial"]},{"id":19,"name":"Café de la panacée","type":"Café restaurant","address":"14 rue de l'école de Pharmacie, 34000 Montpellier","distance":0.3,"features":["terrasse","happy_hour","ecusson","brasserie","decontracte","convivial","dj_set","cosy","calme"]},{"id":20,"name":"Le Café Joseph","type":"Brasserie","address":"Place Jean Jaurès, 34000 Montpellier","distance":0.3,"features":["terrasse","bar_cocktails","ecusson","brasserie"]},{"id":21,"name":"Le Café Joyeux","type":"Café solidaire","address":"Place Alexandre Laissac, 34000 Montpellier","distance":0.1,"features":["cafe","terrasse","convivial"]},{"id":22,"name":"Le Café Jules","type":"Brasserie","address":"2 Place de la Comédie, 34000 Montpellier","distance":0.1,"features":["terrasse","comedie","cafe","brasserie"]},{"id":23,"name":"Le Café Latitude","type":"Café culturel","address":"Rue de la Méditerranée, 34000 Montpellier","distance":1.5,"features":["cafe","concerts","terrasse","convivial","alternatif"]},{"id":24,"name":"Le Café Paume","type":"Café bar","address":"Boulevard du Jeu de Paume, 34000 Montpellier","distance":0.3,"features":["cafe","terrasse","ecusson","calme","wifi"]},{"id":25,"name":"Café Pitot","type":"Café bar","address":"2 Place d'Aviler, 34000 Montpellier","distance":1.2,"features":["cafe","terrasse","calme","cosy","wifi"]},{"id":26,"name":"Le Café Riche","type":"Brasserie historique","address":"8 Place de la Comédie, 34000 Montpellier","distance":0.1,"features":["terrasse","comedie","cafe","brasserie"]},{"id":27,"name":"Caffè Panis","type":"Café brasserie","address":"3 Pl. du marché aux fleurs, 34000 Montpellier","distance":0.4,"features":["terrasse","ecusson","brasserie","cafe","decontracte","calme"]},{"id":28,"name":"Chez Canaille","type":"Bar restaurant","address":"5 Place du Petit Scel, 34000 Montpellier","distance":0.3,"features":["bar_vins","terrasse","convivial","cosy"]},{"id":29,"name":"Le Carolan's","type":"Pub irlandais","address":"Place Saint-Côme, 34000 Montpellier","distance":0.2,"features":["pub","bar_bieres","comedie","sport_tv","convivial"]},{"id":30,"name":"La Casa Cubana","type":"Bar latino","address":"2 Place de la Chapelle, 34000 Montpellier","distance":0.6,"features":["bar_cocktails","latino","ecusson","festif"]},{"id":31,"name":"La Chistera","type":"Pub","address":"2 Bis Rue d'Obilion, 34000 Montpellier","distance":0.1,"features":["bar_bieres","pub","comedie","convivial","karaoke"]},{"id":32,"name":"La Cigale","type":"Bar brasserie","address":"7 Boulevard des Arceaux, 34000 Montpellier","distance":0.6,"features":["brasserie","terrasse","comedie","cafe"]},{"id":33,"name":"Le Clandestin","type":"Bar speakeasy","address":"18 Rue de la Valfrère, 34000 Montpellier","distance":0.3,"features":["speakeasy","bar_cocktails","ecusson","chic","cosy"]},{"id":34,"name":"Le Comptoir de l'Arc","type":"Café bar","address":"1 Place Lacanourgue, 34000 Montpellier","distance":0.9,"features":["terrasse","ecusson","cafe","calme"]},{"id":35,"name":"The Copperbar","type":"Pub moderne","address":"6 Rue de l'Université, 34000 Montpellier","distance":0.6,"features":["cosy","ecusson","pub","chic"]},{"id":36,"name":"Les Coulisses","type":"Bar lounge","address":"3-9 Rue Copé Cambes, 34000 Montpellier","distance":0.3,"features":["lounge","bar_cocktails","ecusson","cosy","chic"]},{"id":37,"name":"Le Coyot Bar","type":"Bar américain","address":"1348 Avenue de la Mer Raymond Dugrand, 34000 Montpellier","distance":1.5,"features":["bar_cocktails","terrasse","port_marianne","festif"]},{"id":38,"name":"Le Cubanito","type":"Bar latino","address":"13 Rue de Verdun, 34000 Montpellier","distance":0.8,"features":["latino","bar_cocktails","ecusson","festif"]},{"id":39,"name":"Le Discopathe","type":"Bar disco","address":"28 Rue du Faubourg du Courreau, 34000 Montpellier","distance":0.9,"features":["terrasse","figuerolles","bar_bieres","bar_vins","jazz","disco","dj_set","concerts","festif","cosy","decontracte"]},{"id":40,"name":"La Distillerie","type":"Bar à cocktails","address":"67 Rue de l'Aiguillerie, 34000 Montpellier","distance":0.6,"features":["bar_cocktails","speakeasy","ecusson","chic"]},{"id":41,"name":"Le Dôme","type":"Bar élégant","address":"2 Rue du Grand Saint-Jean, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","ecusson","lounge","chic"]},{"id":42,"name":"Le Drapeau Rouge","type":"Bar alternatif","address":"53 Rue du Faubourg Boutonnet, 34000 Montpellier","distance":1.3,"features":["terrasse","boutonnet","bar_bieres","rock","convivial","concerts","alternatif"]},{"id":43,"name":"La Dune","type":"Club","address":"Palavas-les-Flots, 34250","distance":12,"features":["boite_club","terrasse","festif"]},{"id":44,"name":"Les Enfants Rouges","type":"Bar restaurant","address":"3 Plan Duché, 34000 Montpellier","distance":0.5,"features":["ecusson","bar_cocktails","terrasse"]},{"id":45,"name":"Le Fitzpatrick's","type":"Pub irlandais","address":"9 Place Saint-Côme, 34000 Montpellier","distance":0.2,"features":["sport_tv","bar_bieres","convivial","comedie","pub"]},{"id":46,"name":"Le Fizz","type":"Club","address":"Rue de Verdun, 34000 Montpellier","distance":0.9,"features":["boite_club","dj_set","electro","festif"]},{"id":47,"name":"La Fumerie","type":"Bar lounge","address":"Rue du Petit Saint-Jean, 34000 Montpellier","distance":0.5,"features":["lounge","bar_cocktails","ecusson","cosy","chic"]},{"id":48,"name":"Les Garçons","type":"Bar","address":"15 Rue des Sœurs Noires, 34000 Montpellier","distance":0.6,"features":["ecusson","convivial","bar_cocktails","decontracte","festif"]},{"id":49,"name":"Le Gazette Café","type":"Café culturel","address":"6 Rue Levat, 34000 Montpellier","distance":1.1,"features":["terrasse","gare","brasserie","cafe","convivial","concerts","cosy"]},{"id":50,"name":"Le Harts Bar","type":"Pub","address":"Rue de la Merci, 34000 Montpellier","distance":0.4,"features":["pub","bar_bieres","ecusson","sport_tv","convivial"]},{"id":51,"name":"Le Hopulus Brewpub","type":"Brasserie artisanale","address":"8 Rue Collot, 34000 Montpellier","distance":0.1,"features":["brasserie","comedie"]},{"id":52,"name":"Hossegor Bar","type":"Bar","address":"8 Rue de la Petite Loge, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","festif","disco","comedie","decontracte"]},{"id":53,"name":"The Invader","type":"Bar geek","address":"5 Rue du Plan d'Agde, 34000 Montpellier","distance":0.5,"features":["jeux","bar_cocktails","ecusson","convivial","alternatif"]},{"id":54,"name":"La Jalade","type":"Bar nature","address":"10 Rue de la Jalade, 34000 Montpellier","distance":2,"features":["calme","cosy","decontracte"]},{"id":55,"name":"Le Jost","type":"Bar lounge","address":"8 Rue du Faubourg de la Saunerie, 34000 Montpellier","distance":0.7,"features":["bar_cocktails","cosy","figuerolles","lounge"]},{"id":56,"name":"Le Kaleido Bar","type":"Bar à cocktails","address":"2 Rue Jules Latreilhe, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","terrasse","comedie","cafe","dj_set"]},{"id":57,"name":"Le Kiosque Verde Paradis","type":"Bar nature","address":"Quartier Beaux-Arts, 34000 Montpellier","distance":1,"features":["terrasse","calme","bar_vins","beaux_arts"]},{"id":58,"name":"Madrediosa","type":"Bar lgbtqia+","address":"5 rue Belmont, 34000 Montpellier","distance":0.3,"features":["terrasse","happy_hour","beaux_arts","bar_bieres","bar_cocktails","decontracte","convivial","karaoke","dj_set","festif","cosy"]},{"id":59,"name":"La Maison Fleurie","type":"Bar à cocktails","address":"Rue du Faubourg Figuerolles, 34000 Montpellier","distance":1.4,"features":["bar_cocktails","terrasse","calme","cosy"]},{"id":60,"name":"Les Marchands","type":"Bar à vin","address":"8 Place Alexandre Laissac, 34000 Montpellier","distance":0.5,"features":["bar_vins","ecusson","cosy"]},{"id":61,"name":"Mi Barrio","type":"Bar latino","address":"Rue du Plan d'Agde, 34000 Montpellier","distance":0.4,"features":["latino","bar_cocktails","ecusson","festif"]},{"id":62,"name":"Le Milk Club","type":"Club","address":"Rue Ferdinand Fabre, 34000 Montpellier","distance":1,"features":["boite_club","dj_set","festif","electro"]},{"id":63,"name":"Le Mio Bar","type":"Bar à cocktails","address":"11 Rue des Balances, 34000 Montpellier","distance":0.4,"features":["bar_cocktails","lounge","terrasse"]},{"id":64,"name":"Le Miranov","type":"Rooftop","address":"455 Avenue du Professeur Antonin Balmès, 34000 Montpellier","distance":2.5,"features":["rooftop","calme","cosy","convivial"]},{"id":65,"name":"Le Mosquito","type":"Bar latino","address":"1 Rue du Plan d'Agde, 34000 Montpellier","distance":0.4,"features":["bar_cocktails","latino","ecusson","festif","dj_set"]},{"id":66,"name":"La Muchacha","type":"Bar latino","address":"Rue de la Loge, 34000 Montpellier","distance":0.3,"features":["latino","bar_cocktails","ecusson","festif","convivial"]},{"id":67,"name":"Le Mustang","type":"Bar américain","address":"Rue du Grand Saint-Jean, 34000 Montpellier","distance":0.4,"features":["ecusson","bar_cocktails","festif","rock","convivial"]},{"id":68,"name":"La Notte","type":"Bar à vin","address":"Rue de l'Aiguillerie, 34000 Montpellier","distance":0.5,"features":["bar_vins","ecusson","cosy"]},{"id":69,"name":"Le Novelty","type":"Bar","address":"Rue de Verdun, 34000 Montpellier","distance":0.8,"features":["bar_cocktails","festif","convivial","ecusson"]},{"id":70,"name":"Le O'Sullivan","type":"Pub irlandais","address":"Boulevard du Jeu de Paume, 34000 Montpellier","distance":0.3,"features":["pub","bar_bieres","sport_tv","comedie","festif"]},{"id":71,"name":"Le Palace","type":"Club","address":"Rue de la République, 34000 Montpellier","distance":0.5,"features":["boite_club","dj_set","chic","festif"]},{"id":72,"name":"Palace Bar","type":"Bar à pastis","address":"Montpellier, 34000","distance":0.5,"features":["bar_cocktails","terrasse","sport_tv","jeux"]},{"id":73,"name":"La Pampa Sauvage","type":"Bar","address":"2400 Route de Pérols, 34970 Lattes","distance":5,"features":["bar_cocktails","disco","terrasse"]},{"id":74,"name":"Papa Doble","type":"Bar à cocktails","address":"6 Rue du Petit Scel, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","chic","ecusson","speakeasy","cosy"]},{"id":75,"name":"Le Parfum","type":"Bar à cocktails","address":"55 Rue de la Cavalerie, 34000 Montpellier","distance":1,"features":["bar_cocktails","cosy","chic","romantique"]},{"id":76,"name":"The Peacock","type":"Pub anglais","address":"Rue de la Merci, 34000 Montpellier","distance":0.4,"features":["pub","bar_bieres","ecusson","sport_tv","convivial"]},{"id":77,"name":"Plein Sud","type":"Bar restaurant","address":"Port Marianne, 34000 Montpellier","distance":2,"features":["terrasse","bar_cocktails","port_marianne"]},{"id":78,"name":"Popular Brewing","type":"Brewpub","address":"14 rue Pila Saint Gely, 34000 Montpellier","distance":0.2,"features":["terrasse","jeux","ecusson","bar_bieres","rock","indie","convivial","cosy","decontracte"]},{"id":79,"name":"Pousse Pas Mémée Dans La Vigne","type":"Bar à vin","address":"Rue de l'Aiguillerie, 34000 Montpellier","distance":0.5,"features":["bar_vins","ecusson","convivial"]},{"id":80,"name":"Le Rebuffy","type":"Bar chill","address":"3 Rue Rebuffy, 34000 Montpellier","distance":0.3,"features":["terrasse","ecusson","bar_bieres","cafe","convivial","cosy","calme","decontracte"]},{"id":81,"name":"Le Redline","type":"Bar comédie club","address":"5 rue des Teissiers, 34000 Montpellier","distance":0.8,"features":["ecusson","lounge","rock","pop","hip_hop","decontracte","convivial","karaoke","festif","cosy"]},{"id":82,"name":"Le Réservoir","type":"Bar à bières","address":"55 Rue de Montels Saint-Pierre, 34070 Montpellier","distance":2,"features":["bar_bieres","quiz","karaoke"]},{"id":83,"name":"Le Rhum Runner","type":"Bar à rhum","address":"Rue des Trésoriers de France, 34000 Montpellier","distance":0.4,"features":["bar_cocktails","ecusson","festif"]},{"id":84,"name":"Le Rockstore","type":"Bar Rock / Concert","address":"20 Rue de Verdun, 34000 Montpellier","distance":0.8,"features":["concerts","rock","underground","ecusson","festif","metal"]},{"id":85,"name":"Le Saint Roch","type":"Bar","address":"Quartier Saint-Roch, 34000 Montpellier","distance":0.6,"features":["convivial","bar_bieres","terrasse","decontracte"]},{"id":86,"name":"Le Secco","type":"Bar à vin","address":"Rue de l'Aiguillerie, 34000 Montpellier","distance":0.5,"features":["bar_vins","ecusson","cosy","festif"]},{"id":87,"name":"The Shakespeare","type":"Pub anglais","address":"Rue de la Merci, 34000 Montpellier","distance":0.4,"features":["pub","ecusson","terrasse","wifi","convivial"]},{"id":88,"name":"Le Smash Bar","type":"Bar à cocktails","address":"Rue du Petit Saint-Jean, 34000 Montpellier","distance":0.5,"features":["bar_cocktails","ecusson","festif"]},{"id":89,"name":"Le St Roch","type":"Bar à tapas","address":"22 Rue du Petit Saint-Jean, 34000 Montpellier","distance":0.4,"features":["bar_vins","ecusson","convivial","cosy"]},{"id":90,"name":"Les Super Vedettes","type":"Bar concert","address":"4 Place des Beaux-Arts, 34000 Montpellier","distance":1,"features":["concerts","indie","alternatif","rock","festif","sport_tv","terrasse"]},{"id":91,"name":"Le Tarbrew","type":"Bar à bières","address":"20 Rue du Docteur Pezat, 34000 Montpellier","distance":1.3,"features":["bar_bieres","terrasse","figuerolles","convivial"]},{"id":92,"name":"La Terraza","type":"Bar terrasse","address":"Place de la Comédie, 34000 Montpellier","distance":0.1,"features":["terrasse","comedie","bar_cocktails","festif"]},{"id":93,"name":"Le Times","type":"Pub","address":"Rue de la Loge, 34000 Montpellier","distance":0.3,"features":["pub","bar_bieres","ecusson","sport_tv","convivial"]},{"id":94,"name":"Le Toit Toit Mon Toit","type":"Rooftop bar","address":"Antigone, 34000 Montpellier","distance":1.5,"features":["rooftop","terrasse","bar_cocktails","chic"]},{"id":95,"name":"Le Trinque Fougasse","type":"Bar à vin","address":"1 Rue de la Galéra, 34000 Montpellier","distance":1.2,"features":["bar_vins","terrasse","port_marianne"]},{"id":96,"name":"Le Triskell","type":"Bar breton","address":"Place Candolle, 34000 Montpellier","distance":0.5,"features":["terrasse","ecusson","bar_bieres","cafe","rock","convivial","cosy","calme"]},{"id":97,"name":"Le Tub","type":"Bar à cocktails","address":"6 Rue du Petit Scel, 34000 Montpellier","distance":0.3,"features":["bar_cocktails","chic","electro"]},{"id":98,"name":"Le V&B","type":"Bar à bières","address":"9 Allée du Levant, 34970 Lattes","distance":4,"features":["bar_bieres","convivial"]},{"id":99,"name":"Le Verre à Soi","type":"Bar à vin","address":"17 Rue Saint-Guilhem, 34000 Montpellier","distance":0.6,"features":["bar_vins","ecusson","cosy"]},{"id":100,"name":"Le VR à Vin","type":"Bar à vin","address":"468 Rue de la Croix Verte, 34090 Montpellier","distance":2.8,"features":["bar_vins","boutonnet","cosy"]}];
+
+        let bars = [];
+        let editingBarId = null;
+        let selectedSearchFilters = [];
+        let customFilters = {};
+
+        function init() {
+            bars = BARS_JSON;
+            loadCustomFilters();
+            generateFormFilters();
+            generateSearchFilters();
+            renderBarsList();
+            updateCounts();
+        }
+
+        function loadCustomFilters() {
+            try {
+                const savedFilters = localStorage.getItem('soif_custom_filters');
+                if (savedFilters) {
+                    customFilters = JSON.parse(savedFilters);
+                    // Fusionner avec les filtres par défaut
+                    Object.keys(customFilters).forEach(category => {
+                        if (!FILTERS[category]) {
+                            FILTERS[category] = [];
+                        }
+                        customFilters[category].forEach(filter => {
+                            // Vérifier si le filtre n'existe pas déjà
+                            if (!FILTERS[category].find(f => f.id === filter.id)) {
+                                FILTERS[category].push({...filter, custom: true});
+                            }
+                        });
+                    });
+                }
+            } catch (error) {
+                console.error('Erreur chargement filtres personnalisés:', error);
+            }
+        }
+
+        function saveCustomFilters() {
+            try {
+                localStorage.setItem('soif_custom_filters', JSON.stringify(customFilters));
+            } catch (error) {
+                console.error('Erreur sauvegarde filtres:', error);
+            }
+        }
+
+        function removeArticle(name) {
+            const articles = ['Le ', 'La ', 'Les ', "L'", 'The ', 'Chez ', 'Un '];
+            for (let article of articles) {
+                if (name.startsWith(article)) {
+                    return name.substring(article.length);
+                }
+            }
+            return name;
+        }
+
+        function sortBarsByName(barsArray) {
+            return barsArray.sort((a, b) => {
+                const nameA = removeArticle(a.name).toLowerCase();
+                const nameB = removeArticle(b.name).toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+        }
+
+        function saveBars() {
+            try {
+                localStorage.setItem('soif_bars', JSON.stringify(bars));
+            } catch (error) {
+                console.error('Erreur de sauvegarde:', error);
+            }
+        }
+
+        function loadBars() {
+            try {
+                const saved = localStorage.getItem('soif_bars');
+                if (saved) {
+                    bars = JSON.parse(saved);
+                } else {
+                    bars = [...BARS_JSON];
+                }
+                bars = sortBarsByName(bars);
+            } catch (error) {
+                console.error('Erreur de chargement:', error);
+                bars = [...BARS_JSON];
+            }
+        }
+
+        function resetToOriginalData() {
+            if (!confirm('⚠️ Réinitialiser avec les 100 bars authentiques ?\n\nToutes vos modifications seront perdues !')) {
+                return;
+            }
+            localStorage.clear();
+            bars = [...BARS_JSON];
+            bars = sortBarsByName(bars);
+            saveBars();
+            renderBarsList();
+            updateCounts();
+            showNotification('✅ Base authentique de 100 bars chargée !');
+        }
+
+        function exportData() {
+            // Export combiné : bars + filtres personnalisés
+            const exportData = {
+                bars: bars,
+                customFilters: customFilters,
+                exportDate: new Date().toISOString(),
+                version: "1.0"
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            
+            // Détection mobile (iPhone, iPad, Android)
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Sur mobile : ouvrir dans une nouvelle fenêtre pour copier/partager
+                const blob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                // Ouvrir dans un nouvel onglet
+                const newWindow = window.open(url, '_blank');
+                
+                if (newWindow) {
+                    showNotification('✅ Données ouvertes ! Copie ou partage le contenu');
+                } else {
+                    // Si le popup est bloqué, télécharger normalement
+                    downloadJSON(dataStr);
+                }
+                
+                // Nettoyer après 1 minute
+                setTimeout(() => URL.revokeObjectURL(url), 60000);
+            } else {
+                // Sur desktop : téléchargement classique
+                downloadJSON(dataStr);
+            }
+            
+            // Tracking export
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'export_data', {
+                    'event_category': 'Données',
+                    'event_label': 'Export JSON',
+                    'bars_count': bars.length,
+                    'custom_filters_count': Object.keys(customFilters).length,
+                    'device': isMobile ? 'mobile' : 'desktop'
+                });
+            }
+        }
+        
+        function downloadJSON(dataStr) {
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            link.download = `soif-bars-${date}.json`;
+            
+            // Pour iOS Safari
+            link.setAttribute('target', '_blank');
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showNotification('✅ Fichier téléchargé avec succès !');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    // Vérifier si c'est le nouveau format (avec bars et customFilters)
+                    let importedBars = [];
+                    let importedFilters = {};
+                    
+                    if (importedData.bars && Array.isArray(importedData.bars)) {
+                        // Nouveau format combiné
+                        importedBars = importedData.bars;
+                        importedFilters = importedData.customFilters || {};
+                    } else if (Array.isArray(importedData)) {
+                        // Ancien format (juste un tableau de bars)
+                        importedBars = importedData;
+                    } else {
+                        showNotification('❌ Format de fichier invalide', 'error');
+                        return;
+                    }
+                    
+                    if (importedBars.length === 0) {
+                        showNotification('❌ Aucun bar trouvé dans le fichier', 'error');
+                        return;
+                    }
+                    
+                    // Compter les filtres personnalisés
+                    const filtersCount = Object.values(importedFilters).reduce((acc, arr) => acc + arr.length, 0);
+                    
+                    let message = `📥 Importer ${importedBars.length} bars`;
+                    if (filtersCount > 0) {
+                        message += ` et ${filtersCount} filtre${filtersCount > 1 ? 's' : ''} personnalisé${filtersCount > 1 ? 's' : ''}`;
+                    }
+                    message += ' ?\n\nCela remplacera votre base actuelle.';
+                    
+                    if (confirm(message)) {
+                        // Importer les bars
+                        bars = importedBars;
+                        bars = sortBarsByName(bars);
+                        saveBars();
+                        
+                        // Importer les filtres personnalisés
+                        if (filtersCount > 0) {
+                            customFilters = importedFilters;
+                            saveCustomFilters();
+                            
+                            // Fusionner avec FILTERS
+                            Object.keys(customFilters).forEach(category => {
+                                if (!FILTERS[category]) {
+                                    FILTERS[category] = [];
+                                }
+                                customFilters[category].forEach(filter => {
+                                    if (!FILTERS[category].find(f => f.id === filter.id)) {
+                                        FILTERS[category].push({...filter, custom: true});
+                                    }
+                                });
+                            });
+                            
+                            // Régénérer les filtres
+                            generateFormFilters();
+                            generateSearchFilters();
+                        }
+                        
+                        renderBarsList();
+                        updateCounts();
+                        
+                        let successMsg = `✅ ${importedBars.length} bars importés !`;
+                        if (filtersCount > 0) {
+                            successMsg += ` + ${filtersCount} filtre${filtersCount > 1 ? 's' : ''}`;
+                        }
+                        showNotification(successMsg);
+                        
+                        // Tracking import
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'import_data', {
+                                'event_category': 'Données',
+                                'event_label': 'Import JSON',
+                                'bars_count': importedBars.length,
+                                'filters_count': filtersCount
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Erreur import:', error);
+                    showNotification('❌ Erreur de lecture du fichier', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function findFilterLabel(filterId) {
+            for (const category in FILTERS) {
+                const filter = FILTERS[category].find(f => f.id === filterId);
+                if (filter) return filter.label;
+            }
+            return filterId;
+        }
+
+        function generateFormFilters() {
+            const container = document.getElementById('formFiltersContainer');
+            container.innerHTML = '';
+            
+            Object.keys(FILTERS).forEach(categoryKey => {
+                const div = document.createElement('div');
+                div.className = 'category';
+                
+                const title = document.createElement('div');
+                title.className = 'category-title';
+                title.textContent = categoryKey.replace(/_/g, ' ').toUpperCase();
+                div.appendChild(title);
+                
+                const grid = document.createElement('div');
+                grid.className = 'filter-grid';
+                
+                FILTERS[categoryKey].forEach(filter => {
+                    const item = document.createElement('div');
+                    item.className = 'filter-item';
+                    if (filter.custom) {
+                        item.classList.add('custom');
+                    }
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `form_${filter.id}`;
+                    checkbox.value = filter.id;
+                    
+                    const label = document.createElement('label');
+                    label.htmlFor = `form_${filter.id}`;
+                    label.textContent = filter.label;
+                    
+                    checkbox.addEventListener('change', function() {
+                        item.classList.toggle('active', this.checked);
+                    });
+                    
+                    item.addEventListener('click', function(e) {
+                        if (e.target !== checkbox && e.target !== label && !e.target.classList.contains('delete-filter-btn')) {
+                            checkbox.checked = !checkbox.checked;
+                            item.classList.toggle('active', checkbox.checked);
+                        }
+                    });
+                    
+                    item.appendChild(checkbox);
+                    item.appendChild(label);
+                    
+                    // Ajouter le bouton de suppression si c'est un filtre personnalisé
+                    if (filter.custom) {
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-filter-btn';
+                        deleteBtn.innerHTML = '×';
+                        deleteBtn.title = 'Supprimer ce filtre';
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteCustomFilter(categoryKey, filter.id);
+                        });
+                        item.appendChild(deleteBtn);
+                    }
+                    
+                    grid.appendChild(item);
+                });
+                
+                div.appendChild(grid);
+                container.appendChild(div);
+            });
+        }
+
+        function generateSearchFilters() {
+            const container = document.getElementById('searchFiltersContainer');
+            container.innerHTML = '';
+            
+            Object.keys(FILTERS).forEach(categoryKey => {
+                const div = document.createElement('div');
+                div.className = 'category';
+                
+                const title = document.createElement('div');
+                title.className = 'category-title';
+                title.textContent = categoryKey.replace(/_/g, ' ').toUpperCase();
+                div.appendChild(title);
+                
+                const filtersDiv = document.createElement('div');
+                
+                FILTERS[categoryKey].forEach(filter => {
+                    const item = document.createElement('div');
+                    item.className = 'search-filter-item';
+                    item.dataset.filterId = filter.id;
+                    item.textContent = filter.label;
+                    
+                    if (filter.custom) {
+                        item.classList.add('custom');
+                        
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-filter-btn';
+                        deleteBtn.innerHTML = '×';
+                        deleteBtn.title = 'Supprimer ce filtre';
+                        deleteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteCustomFilter(categoryKey, filter.id);
+                        });
+                        item.appendChild(deleteBtn);
+                    }
+                    
+                    item.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('delete-filter-btn')) {
+                            toggleSearchFilter(filter.id);
+                        }
+                    });
+                    
+                    filtersDiv.appendChild(item);
+                });
+                
+                div.appendChild(filtersDiv);
+                container.appendChild(div);
+            });
+        }
+
+        function toggleSearchFilter(filterId) {
+            const index = selectedSearchFilters.indexOf(filterId);
+            if (index > -1) {
+                selectedSearchFilters.splice(index, 1);
+            } else {
+                selectedSearchFilters.push(filterId);
+                
+                // Tracking filtre utilisé
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'filter_used', {
+                        'event_category': 'Filtres',
+                        'event_label': filterId,
+                        'value': 1
+                    });
+                }
+            }
+            updateSearchFilterUI();
+            updateSelectedFilters();
+            performSearch();
+        }
+
+        function updateSearchFilterUI() {
+            document.querySelectorAll('.search-filter-item').forEach(item => {
+                const isActive = selectedSearchFilters.includes(item.dataset.filterId);
+                item.classList.toggle('active', isActive);
+            });
+        }
+
+        function updateSelectedFilters() {
+            const container = document.getElementById('selectedFilters');
+            container.innerHTML = '';
+            
+            if (selectedSearchFilters.length === 0) {
+                container.innerHTML = '<span style="color: rgba(255,255,255,0.4); font-size: 13px;">Aucun filtre sélectionné</span>';
+                return;
+            }
+            
+            selectedSearchFilters.forEach(filterId => {
+                const tag = document.createElement('div');
+                tag.className = 'selected-filter-tag';
+                
+                const label = document.createElement('span');
+                label.textContent = findFilterLabel(filterId);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'filter-remove';
+                removeBtn.textContent = '×';
+                removeBtn.addEventListener('click', () => toggleSearchFilter(filterId));
+                
+                tag.appendChild(label);
+                tag.appendChild(removeBtn);
+                container.appendChild(tag);
+            });
+        }
+
+        function performSearch() {
+            const searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+            let filtered = bars;
+            
+            if (searchQuery) {
+                filtered = filtered.filter(bar => 
+                    bar.name.toLowerCase().includes(searchQuery) ||
+                    bar.type.toLowerCase().includes(searchQuery) ||
+                    bar.address.toLowerCase().includes(searchQuery)
+                );
+                
+                // Tracking recherche
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'search', {
+                        'event_category': 'Recherche',
+                        'search_term': searchQuery,
+                        'results_count': filtered.length
+                    });
+                }
+            }
+            
+            if (selectedSearchFilters.length > 0) {
+                filtered = filtered.filter(bar =>
+                    selectedSearchFilters.every(filterId => bar.features.includes(filterId))
+                );
+            }
+            
+            renderSearchResults(filtered);
+            
+            // Mise à jour du compteur dans le bouton
+            const countBtn = document.getElementById('resultCountBtn');
+            if (countBtn) {
+                countBtn.textContent = filtered.length;
+            }
+        }
+
+        function showResults() {
+            document.getElementById('filtersSection').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Tracking affichage résultats
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'view_results', {
+                    'event_category': 'Recherche',
+                    'filters_count': selectedSearchFilters.length,
+                    'results_count': document.getElementById('resultCount').textContent
+                });
+            }
+        }
+
+        function backToFilters() {
+            document.getElementById('filtersSection').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAddFilterModal() {
+            const modal = document.createElement('div');
+            modal.className = 'add-filter-modal';
+            modal.id = 'addFilterModal';
+            
+            const content = document.createElement('div');
+            content.className = 'add-filter-modal-content';
+            
+            let html = '<h2>➕ Ajouter un filtre personnalisé</h2>';
+            
+            // Sélection de la catégorie
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Catégorie *</label>';
+            html += '<select class="form-input" id="filterCategory">';
+            html += '<option value="">-- Choisir une catégorie --</option>';
+            Object.keys(FILTERS).forEach(key => {
+                const label = key.replace(/_/g, ' ').toUpperCase();
+                html += `<option value="${key}">${label}</option>`;
+            });
+            html += '</select>';
+            html += '</div>';
+            
+            // Emoji
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Emoji (optionnel)</label>';
+            html += '<input type="text" class="form-input" id="filterEmoji" placeholder="🍺" maxlength="2">';
+            html += '</div>';
+            
+            // Nom du filtre
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Nom du filtre *</label>';
+            html += '<input type="text" class="form-input" id="filterName" placeholder="Ex: Bar associatif">';
+            html += '</div>';
+            
+            // Prévisualisation
+            html += '<div class="form-group">';
+            html += '<label class="form-label">Prévisualisation :</label>';
+            html += '<div class="filter-preview" id="filterPreview">🔹 Votre filtre</div>';
+            html += '</div>';
+            
+            // Boutons
+            html += '<button class="btn-primary" id="confirmAddFilterBtn">✅ Ajouter le filtre</button>';
+            html += '<button class="btn-secondary" id="cancelAddFilterBtn">❌ Annuler</button>';
+            
+            content.innerHTML = html;
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Mise à jour de la prévisualisation en temps réel
+            const emojiInput = document.getElementById('filterEmoji');
+            const nameInput = document.getElementById('filterName');
+            const preview = document.getElementById('filterPreview');
+            
+            function updatePreview() {
+                const emoji = emojiInput.value.trim() || '🔹';
+                const name = nameInput.value.trim() || 'Votre filtre';
+                preview.textContent = `${emoji} ${name}`;
+            }
+            
+            emojiInput.addEventListener('input', updatePreview);
+            nameInput.addEventListener('input', updatePreview);
+            
+            // Confirmer
+            document.getElementById('confirmAddFilterBtn').addEventListener('click', () => {
+                const category = document.getElementById('filterCategory').value;
+                const emoji = emojiInput.value.trim();
+                const name = nameInput.value.trim();
+                
+                if (!category) {
+                    showNotification('⚠️ Choisissez une catégorie', 'error');
+                    return;
+                }
+                
+                if (!name || name.length < 2) {
+                    showNotification('⚠️ Le nom doit avoir au moins 2 caractères', 'error');
+                    return;
+                }
+                
+                // Créer l'ID du filtre
+                const filterId = name.toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]/g, '_')
+                    .replace(/_+/g, '_')
+                    .replace(/^_|_$/g, '');
+                
+                // Vérifier si le filtre existe déjà
+                if (FILTERS[category].find(f => f.id === filterId)) {
+                    showNotification('⚠️ Ce filtre existe déjà', 'error');
+                    return;
+                }
+                
+                // Ajouter le filtre
+                const newFilter = {
+                    id: filterId,
+                    label: emoji ? `${emoji} ${name}` : name,
+                    custom: true
+                };
+                
+                FILTERS[category].push(newFilter);
+                
+                // Sauvegarder dans les filtres personnalisés
+                if (!customFilters[category]) {
+                    customFilters[category] = [];
+                }
+                customFilters[category].push(newFilter);
+                saveCustomFilters();
+                
+                // Régénérer les filtres dans les formulaires
+                generateFormFilters();
+                generateSearchFilters();
+                
+                showNotification(`✅ Filtre "${newFilter.label}" ajouté !`);
+                closeAddFilterModal();
+            });
+            
+            // Annuler
+            document.getElementById('cancelAddFilterBtn').addEventListener('click', closeAddFilterModal);
+            
+            // Fermer en cliquant sur le fond
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeAddFilterModal();
+            });
+        }
+
+        function closeAddFilterModal() {
+            const modal = document.getElementById('addFilterModal');
+            if (modal) modal.remove();
+        }
+
+        function deleteCustomFilter(categoryKey, filterId) {
+            const filter = FILTERS[categoryKey].find(f => f.id === filterId);
+            if (!filter) return;
+            
+            if (!confirm(`Supprimer le filtre "${filter.label}" ?\n\nCe filtre sera retiré de toutes les fiches bar.`)) {
+                return;
+            }
+            
+            // Supprimer des filtres personnalisés
+            if (customFilters[categoryKey]) {
+                customFilters[categoryKey] = customFilters[categoryKey].filter(f => f.id !== filterId);
+                if (customFilters[categoryKey].length === 0) {
+                    delete customFilters[categoryKey];
+                }
+                saveCustomFilters();
+            }
+            
+            // Supprimer de la liste FILTERS
+            const index = FILTERS[categoryKey].findIndex(f => f.id === filterId);
+            if (index !== -1) {
+                FILTERS[categoryKey].splice(index, 1);
+            }
+            
+            // Supprimer de tous les bars
+            let modifiedCount = 0;
+            bars.forEach(bar => {
+                const originalLength = bar.features.length;
+                bar.features = bar.features.filter(f => f !== filterId);
+                if (bar.features.length < originalLength) {
+                    modifiedCount++;
+                }
+            });
+            
+            // Sauvegarder les bars si modifiés
+            if (modifiedCount > 0) {
+                saveBars();
+                renderBarsList();
+            }
+            
+            // Supprimer des filtres de recherche sélectionnés
+            const wasSelected = selectedSearchFilters.includes(filterId);
+            selectedSearchFilters = selectedSearchFilters.filter(f => f !== filterId);
+            
+            // Régénérer toutes les interfaces
+            generateFormFilters();
+            generateSearchFilters();
+            
+            if (wasSelected) {
+                updateSelectedFilters();
+                performSearch();
+            }
+            
+            let message = `🗑️ Filtre "${filter.label}" supprimé`;
+            if (modifiedCount > 0) {
+                message += ` (retiré de ${modifiedCount} bar${modifiedCount > 1 ? 's' : ''})`;
+            }
+            showNotification(message);
+            
+            // Tracking suppression filtre
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'filter_deleted', {
+                    'event_category': 'Filtres',
+                    'event_label': filterId,
+                    'value': 1
+                });
+            }
+        }
+
+        function surpriseMe() {
+            if (bars.length === 0) {
+                showNotification('⚠️ Aucun bar disponible', 'error');
+                return;
+            }
+            
+            // Sélectionner un bar aléatoire
+            const randomBar = bars[Math.floor(Math.random() * bars.length)];
+            
+            // Effacer les filtres et la recherche
+            selectedSearchFilters = [];
+            document.getElementById('searchInput').value = '';
+            updateSearchFilterUI();
+            updateSelectedFilters();
+            
+            // Afficher uniquement ce bar
+            renderSearchResults([randomBar]);
+            
+            // Afficher la section résultats
+            showResults();
+            
+            showNotification(`🎲 Découvre : ${randomBar.name} !`);
+            
+            // Tracking surprise
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'surprise_me', {
+                    'event_category': 'Recherche',
+                    'event_label': randomBar.name,
+                    'value': 1
+                });
+            }
+        }
+
+        function renderSearchResults(filteredBars) {
+            const container = document.getElementById('searchResults');
+            const countEl = document.getElementById('resultCount');
+            countEl.textContent = filteredBars.length;
+            
+            if (filteredBars.length === 0) {
+                container.innerHTML = '<div class="empty-state">Aucun bar trouvé</div>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            filteredBars.forEach(bar => {
+                const card = createBarCard(bar, false);
+                container.appendChild(card);
+            });
+        }
+
+        function createBarCard(bar, withActions = false) {
+            const card = document.createElement('div');
+            card.className = 'bar-card';
+            
+            const name = document.createElement('div');
+            name.className = 'bar-name';
+            name.textContent = bar.name;
+            
+            const type = document.createElement('div');
+            type.className = 'bar-type';
+            type.textContent = bar.type;
+            
+            const address = document.createElement('div');
+            address.className = 'bar-address';
+            address.textContent = `${bar.address} • ${bar.distance} km`;
+            
+            const features = document.createElement('div');
+            features.className = 'bar-features';
+            bar.features.slice(0, 8).forEach(f => {
+                const badge = document.createElement('span');
+                badge.className = 'feature-badge';
+                badge.textContent = findFilterLabel(f);
+                features.appendChild(badge);
+            });
+            if (bar.features.length > 8) {
+                const more = document.createElement('span');
+                more.className = 'feature-badge';
+                more.textContent = `+${bar.features.length - 8}`;
+                features.appendChild(more);
+            }
+            
+            card.appendChild(name);
+            card.appendChild(type);
+            card.appendChild(address);
+            card.appendChild(features);
+            
+            if (withActions) {
+                const actions = document.createElement('div');
+                actions.className = 'btn-actions';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn-edit';
+                editBtn.textContent = '✏️ Modifier';
+                editBtn.addEventListener('click', () => editBar(bar.id));
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn-delete';
+                deleteBtn.textContent = '🗑️ Supprimer';
+                deleteBtn.addEventListener('click', () => deleteBar(bar.id));
+                
+                actions.appendChild(editBtn);
+                actions.appendChild(deleteBtn);
+                card.appendChild(actions);
+            }
+            
+            return card;
+        }
+
+        function renderBarsList() {
+            const container = document.getElementById('barsListContainer');
+            
+            if (bars.length === 0) {
+                container.innerHTML = '<div class="empty-state">Aucun bar enregistré</div>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            bars.forEach(bar => {
+                const card = createBarCard(bar, true);
+                container.appendChild(card);
+            });
+        }
+
+        function showNewBarForm() {
+            editingBarId = null;
+            document.getElementById('barFormContainer').style.display = 'block';
+            document.getElementById('barsList').style.display = 'none';
+            clearForm();
+        }
+
+        function cancelEdit() {
+            document.getElementById('barFormContainer').style.display = 'none';
+            document.getElementById('barsList').style.display = 'block';
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById('barName').value = '';
+            document.getElementById('barType').value = '';
+            document.getElementById('barAddress').value = '';
+            document.getElementById('barDistance').value = '';
+            
+            document.querySelectorAll('#formFiltersContainer input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            document.querySelectorAll('#formFiltersContainer .filter-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        function editBar(id) {
+            const bar = bars.find(b => b.id === id);
+            if (!bar) return;
+            
+            editingBarId = id;
+            document.getElementById('barFormContainer').style.display = 'block';
+            document.getElementById('barsList').style.display = 'none';
+            
+            document.getElementById('barName').value = bar.name;
+            document.getElementById('barType').value = bar.type;
+            document.getElementById('barAddress').value = bar.address;
+            document.getElementById('barDistance').value = bar.distance;
+            
+            document.querySelectorAll('#formFiltersContainer input[type="checkbox"]').forEach(cb => {
+                const isChecked = bar.features.includes(cb.value);
+                cb.checked = isChecked;
+                cb.closest('.filter-item').classList.toggle('active', isChecked);
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveBar() {
+            const name = document.getElementById('barName').value.trim();
+            const type = document.getElementById('barType').value.trim();
+            const address = document.getElementById('barAddress').value.trim();
+            const distance = parseFloat(document.getElementById('barDistance').value) || 0;
+            
+            if (!name || !type || !address) {
+                showNotification('⚠️ Remplissez tous les champs obligatoires', 'error');
+                return;
+            }
+            
+            const features = [];
+            document.querySelectorAll('#formFiltersContainer input[type="checkbox"]:checked').forEach(cb => {
+                features.push(cb.value);
+            });
+            
+            if (editingBarId) {
+                const index = bars.findIndex(b => b.id === editingBarId);
+                if (index !== -1) {
+                    bars[index] = { ...bars[index], name, type, address, distance, features };
+                    showNotification('✅ Bar modifié !');
+                    
+                    // Tracking modification
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'bar_edited', {
+                            'event_category': 'Gestion Bars',
+                            'event_label': name,
+                            'value': 1
+                        });
+                    }
+                }
+            } else {
+                const id = bars.length > 0 ? Math.max(...bars.map(b => b.id)) + 1 : 1;
+                bars.push({ id, name, type, address, distance, features });
+                showNotification('✅ Bar créé !');
+                
+                // Tracking création
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'bar_created', {
+                        'event_category': 'Gestion Bars',
+                        'event_label': name,
+                        'value': 1
+                    });
+                }
+            }
+            
+            bars = sortBarsByName(bars);
+            saveBars();
+            cancelEdit();
+            renderBarsList();
+            updateCounts();
+        }
+
+        function deleteBar(id) {
+            const bar = bars.find(b => b.id === id);
+            if (!bar) return;
+            
+            if (!confirm(`Supprimer "${bar.name}" ?\n\nCette action est irréversible.`)) {
+                return;
+            }
+            
+            bars = bars.filter(b => b.id !== id);
+            saveBars();
+            showNotification(`🗑️ "${bar.name}" supprimé`);
+            renderBarsList();
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const count = bars.length;
+            document.getElementById('totalBars').textContent = count;
+            document.getElementById('barsCount').textContent = count;
+        }
+
+        function showNotification(message, type = 'success') {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            if (type === 'error') {
+                notif.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            }
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            setTimeout(() => {
+                if (notif.parentNode) notif.remove();
+            }, 3000);
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(`${tabName}-content`).classList.add('active');
+            
+            // Tracking Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tab_change', {
+                    'event_category': 'Navigation',
+                    'event_label': tabName,
+                    'value': 1
+                });
+            }
+            
+            if (tabName === 'recherche') {
+                performSearch();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBars();
+            init();
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+            });
+            
+            document.getElementById('newBarBtn').addEventListener('click', showNewBarForm);
+            document.getElementById('resetBtn').addEventListener('click', resetToOriginalData);
+            document.getElementById('exportBtn').addEventListener('click', exportData);
+            document.getElementById('importBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+            document.getElementById('fileInput').addEventListener('change', importData);
+            document.getElementById('saveBtn').addEventListener('click', saveBar);
+            document.getElementById('cancelBtn').addEventListener('click', cancelEdit);
+            
+            document.getElementById('showResultsBtn').addEventListener('click', showResults);
+            document.getElementById('backToFiltersBtn').addEventListener('click', backToFilters);
+            document.getElementById('addFilterBtn').addEventListener('click', showAddFilterModal);
+            document.getElementById('surpriseMeBtn').addEventListener('click', surpriseMe);
+            
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', performSearch);
+        });
+    </script>
+</body>
+</html>
