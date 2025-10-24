@@ -998,7 +998,7 @@
   },
   {
     "id": 71,
-    "name": "Le Palace",
+    "name": "Le Panama",
     "type": "Club",
     "address": "Rue de la République, 34000 Montpellier",
     "distance": 0.5,
@@ -1036,12 +1036,12 @@
   },
   {
     "id": 74,
-    "name": "Papa Doble",
-    "type": "Bar à cocktails",
-    "address": "6 Rue du Petit Scel, 34000 Montpellier",
+    "name": "le Zèbre bleu",
+    "type": "Bar dansant",
+    "address": "La Calade - Route de Palavas 34970 Lattes ",
     "distance": 0.3,
     "features": [
-      "bar_cocktails",
+      "bar_dansant",
       "chic",
       "ecusson",
       "speakeasy",
