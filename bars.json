@@ -1,0 +1,2045 @@
+[
+  {
+    "id": 1,
+    "name": "Les 3 Singes",
+    "type": "Bar concert",
+    "address": "Rue des étuves, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "ecusson",
+      "festif",
+      "alternatif",
+      "rock",
+      "concerts"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Le Alhambra Taberna",
+    "type": "Bar latino",
+    "address": "Rue Alexandre Cabanel, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_bieres",
+      "festif",
+      "ecusson",
+      "dancefloor"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "L'Antirouille",
+    "type": "Bar concert / Club",
+    "address": "12 Rue Anatole-France, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "indie",
+      "concerts",
+      "alternatif",
+      "ecusson",
+      "festif",
+      "rock"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "L'Arbre Blanc",
+    "type": "Bar rooftop",
+    "address": "Avenue Raymond Dugrand, 34000 Montpellier",
+    "distance": 1.2,
+    "features": [
+      "port_marianne",
+      "bar_cocktails",
+      "rooftop",
+      "bar_dansant",
+      "tendance",
+      "anime",
+      "branche",
+      "chic",
+      "terrasse",
+      "parking",
+      "afterwork",
+      "happy_hour",
+      "modere",
+      "anime_sonore",
+      "couples",
+      "groupe_petit",
+      "groupe_moyen",
+      "evenements_prives",
+      "afterwork_parfait",
+      "anniversaire",
+      "rendez_vous",
+      "le_sunset",
+      "cocktails_signature",
+      "bieres_artisanales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "spiritueux",
+      "shots",
+      "cafe",
+      "the",
+      "planches",
+      "tapas",
+      "vegetarien",
+      "snacking",
+      "apres_midi",
+      "soir",
+      "terrasse_ensoleillee",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "business",
+      "pop",
+      "lounge_music",
+      "electro",
+      "variete",
+      "disco",
+      "variee",
+      "chic",
+      "mange_debout",
+      "comptoir",
+      "ascenseur",
+      "toilettes_pmr"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "L'Australian Café",
+    "type": "Pub australien",
+    "address": "108 Rue de Rhodes, 34000 Montpellier",
+    "distance": 1.3,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "ecusson",
+      "sport_tv"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Un Bar et Jivay",
+    "type": "Bar microbrasserie",
+    "address": "Square de la Babote, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "ecusson",
+      "comedie",
+      "bar_bieres",
+      "pub",
+      "brasserie",
+      "guinguette",
+      "tendance",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "decontracte",
+      "underground",
+      "terrasse",
+      "afterwork",
+      "happy_hour",
+      "modere",
+      "anime_sonore",
+      "groupe_petit",
+      "groupe_moyen",
+      "groupe_grand",
+      "evenements_prives",
+      "afterwork_parfait",
+      "anniversaire",
+      "bieres_artisanales",
+      "bieres_locales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "sans_alcool",
+      "shots",
+      "cafe",
+      "the",
+      "planches",
+      "burgers",
+      "brunch",
+      "snacking",
+      "apres_midi",
+      "terrasse_ensoleillee",
+      "18_25",
+      "25_35",
+      "tous_ages",
+      "rock",
+      "pop",
+      "karaoke",
+      "cours_de_brassage",
+      "decontracte_service",
+      "amical",
+      "flechettes",
+      "mange_debout",
+      "tables",
+      "plain_pied"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Barberousse",
+    "type": "Pub pirate",
+    "address": "6 Rue Boussairolles, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "ecusson",
+      "comedie",
+      "pub",
+      "speakeasy",
+      "bar_dansant",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "terrasse",
+      "happy_hour",
+      "anime_sonore",
+      "tres_bruyant",
+      "groupe_petit",
+      "groupe_moyen",
+      "groupe_grand",
+      "anniversaire",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "shots",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "etudiants",
+      "rock",
+      "pop",
+      "variete",
+      "disco",
+      "variee",
+      "decontracte_service",
+      "au_comptoir",
+      "mange_debout"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "La Barbote",
+    "type": "Bar microbrasserie",
+    "address": "1 Rue des Deux Ponts, 34000 Montpellier",
+    "distance": 2.5,
+    "features": [
+      "bar_bieres",
+      "terrasse_ensoleillee",
+      "jardin",
+      "calme",
+      "vue_ville"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Le Barri",
+    "type": "Bar",
+    "address": "4 Boulevard Louis Blanc, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "ecusson",
+      "convivial",
+      "bar_cocktails",
+      "terrasse"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "The Beehive",
+    "type": "Pub",
+    "address": "15 Rue du Plan d'Agde, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "ecusson",
+      "convivial",
+      "terrasse"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Le BelAmour",
+    "type": "Bar restaurant",
+    "address": "1 Rue Louis Lumière, 34970 Lattes",
+    "distance": 3.5,
+    "features": [
+      "lattes",
+      "terrasse",
+      "bar_vins",
+      "tapas",
+      "romantique"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Le Berthom",
+    "type": "Bar Ã  bières",
+    "address": "5 Rue Boussairolles, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "bar_bieres",
+      "bieres_artisanales",
+      "ecusson",
+      "convivial",
+      "planches"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Le Black Out",
+    "type": "Bar rock",
+    "address": "6 Rue de la Vieille Intendance, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "rock",
+      "concerts",
+      "underground",
+      "ecusson",
+      "festif"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "The Black Sheep",
+    "type": "Pub alternatif",
+    "address": "21 Boulevard Louis Blanc, 34000 Montpellier",
+    "distance": 1,
+    "features": [
+      "concerts",
+      "bar_bieres",
+      "alternatif",
+      "beaux_arts",
+      "pub"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Le Bockale",
+    "type": "Bar Ã  bières",
+    "address": "2 Rue de la République, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "bar_bieres",
+      "bieres_artisanales",
+      "convivial",
+      "terrasse"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Le Bonsoir",
+    "type": "Bar lounge",
+    "address": "6 Rue de la Croix d'Or, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "lounge",
+      "bar_cocktails",
+      "ecusson",
+      "cosy",
+      "romantique"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Le Boum Boum",
+    "type": "Bar dansant",
+    "address": "Lattes, 34970",
+    "distance": 3.5,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "festif",
+      "lattes",
+      "bar_cocktails"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Le Broc Café",
+    "type": "Café bar",
+    "address": "Rue du Faubourg de NÃ®mes, 34000 Montpellier",
+    "distance": 1.3,
+    "features": [
+      "terrasse",
+      "happy_hour",
+      "ecusson",
+      "brasserie",
+      "cafe",
+      "convivial",
+      "calme"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Le Burnoutbar",
+    "type": "Bar e-sport",
+    "address": "60 Bis Avenue du Pont Juvénal, 34000 Montpellier",
+    "distance": 1.8,
+    "features": [
+      "jeux",
+      "bar_cocktails",
+      "antigone",
+      "convivial",
+      "jeux_societe"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Café de la panacée",
+    "type": "Café restaurant",
+    "address": "14 rue de l'école de Pharmacie, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "terrasse",
+      "happy_hour",
+      "ecusson",
+      "brasserie",
+      "decontracte",
+      "convivial",
+      "dj_set",
+      "cosy",
+      "calme"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Le Café Joseph",
+    "type": "Brasserie",
+    "address": "Place Jean Jaurès, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "terrasse",
+      "bar_cocktails",
+      "ecusson",
+      "brasserie"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Le Café Joyeux",
+    "type": "Café solidaire",
+    "address": "Place Alexandre Laissac, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "cafe",
+      "terrasse",
+      "convivial"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Le Café Jules",
+    "type": "Brasserie",
+    "address": "2 Place de la Comédie, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "terrasse",
+      "comedie",
+      "cafe",
+      "brasserie"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Le Café Latitude",
+    "type": "Café culturel",
+    "address": "Rue de la Méditerranée, 34000 Montpellier",
+    "distance": 1.5,
+    "features": [
+      "cafe",
+      "cosy",
+      "tendance",
+      "romantique",
+      "calme",
+      "convivial",
+      "terrasse",
+      "calme_sonore",
+      "couples",
+      "groupe_petit",
+      "solo",
+      "rendez_vous",
+      "cocktails_signature",
+      "bieres_artisanales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "spiritueux",
+      "cafe",
+      "the",
+      "attentionne"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Le Café Paume",
+    "type": "Café bar",
+    "address": "Boulevard du Jeu de Paume, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "cafe",
+      "terrasse",
+      "ecusson",
+      "calme",
+      "wifi"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Café Pitot",
+    "type": "Café bar",
+    "address": "2 Place d'Aviler, 34000 Montpellier",
+    "distance": 1.2,
+    "features": [
+      "cafe",
+      "cosy",
+      "calme",
+      "terrasse",
+      "wifi",
+      "cocktails_signature",
+      "vins_naturels",
+      "bieres_artisanales",
+      "bieres_locales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "spiritueux",
+      "cafe",
+      "the",
+      "planches",
+      "tapas",
+      "vegetarien",
+      "snacking",
+      "matin",
+      "midi",
+      "apres_midi",
+      "soir",
+      "terrasse_ensoleillee",
+      "18_25",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "etudiants",
+      "business",
+      "electro",
+      "parfait_pour_le_sunset",
+      "mange_debout",
+      "tables",
+      "poufs",
+      "plain_pied"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Le Café Riche",
+    "type": "Brasserie historique",
+    "address": "8 Place de la Comédie, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "terrasse",
+      "comedie",
+      "cafe",
+      "brasserie"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Caffè¨ Panis",
+    "type": "Café brasserie",
+    "address": "3 Pl. du marché aux fleurs, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "terrasse",
+      "ecusson",
+      "brasserie",
+      "cafe",
+      "decontracte",
+      "calme"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Chez Canaille",
+    "type": "Bar restaurant",
+    "address": "5 Place du Petit Scel, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_vins",
+      "tapas",
+      "terrasse",
+      "convivial",
+      "cosy"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Le Carolan's",
+    "type": "Pub irlandais",
+    "address": "Place Saint-CÃ´me, 34000 Montpellier",
+    "distance": 0.2,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "comedie",
+      "sport_tv",
+      "convivial"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "La Casa Cubana",
+    "type": "Bar latino",
+    "address": "2 Place de la Chapelle, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "bar_cocktails",
+      "latino",
+      "dancefloor",
+      "ecusson",
+      "festif"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "La Chistera",
+    "type": "Pub",
+    "address": "2 Bis Rue d'Obilion, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "bar_bieres",
+      "bieres_artisanales",
+      "pub",
+      "comedie",
+      "convivial",
+      "karaoke"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "La Cigale",
+    "type": "Bar brasserie",
+    "address": "7 Boulevard des Arceaux, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "brasserie",
+      "terrasse",
+      "comedie",
+      "cafe",
+      "vue_ville"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Le Clandestin",
+    "type": "Bar speakeasy",
+    "address": "18 Rue de la Valfrère, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "speakeasy",
+      "bar_cocktails",
+      "ecusson",
+      "chic",
+      "cosy"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Le Club",
+    "type": "Night club",
+    "address": " 5 Rue du Grand Saint-Jean, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "boite_club",
+      "cocktails_signature",
+      "chic",
+      "ecusson",
+      "speakeasy",
+      "cosy"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Le Comptoir de l'Arc",
+    "type": "Café bar",
+    "address": "1 Place Lacanourgue, 34000 Montpellier",
+    "distance": 0.9,
+    "features": [
+      "terrasse",
+      "ecusson",
+      "cafe",
+      "vue_ville",
+      "calme"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "The Copperbar",
+    "type": "Pub moderne",
+    "address": "6 Rue de l'Université, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "spiritueux",
+      "cosy",
+      "ecusson",
+      "pub",
+      "chic"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Les Coulisses",
+    "type": "Bar lounge",
+    "address": "3-9 Rue Copé Cambes, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "lounge",
+      "bar_cocktails",
+      "ecusson",
+      "cosy",
+      "chic"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Le Coyot Bar",
+    "type": "Bar américain",
+    "address": "1348 Avenue de la Mer Raymond Dugrand, 34000 Montpellier",
+    "distance": 1.5,
+    "features": [
+      "bar_cocktails",
+      "terrasse",
+      "port_marianne",
+      "festif",
+      "burgers"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Le Cubanito",
+    "type": "Bar latino",
+    "address": "13 Rue de Verdun, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "latino",
+      "bar_cocktails",
+      "ecusson",
+      "festif",
+      "dancefloor"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Le Discopathe",
+    "type": "Bar disco",
+    "address": "28 Rue du Faubourg du Courreau, 34000 Montpellier",
+    "distance": 0.9,
+    "features": [
+      "disco",
+      "dancefloor",
+      "festif",
+      "dj_set",
+      "figuerolles"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "La Distillerie",
+    "type": "Bar Ã  cocktails",
+    "address": "67 Rue de l'Aiguillerie, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "bar_cocktails",
+      "cocktails_signature",
+      "speakeasy",
+      "ecusson",
+      "chic"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Le Dôme",
+    "type": "Bar élégant",
+    "address": "2 Rue du Grand Saint-Jean, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_cocktails",
+      "ecusson",
+      "lounge",
+      "chic"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Le Drapeau Rouge",
+    "type": "Bar alternatif",
+    "address": "53 Rue du Faubourg Boutonnet, 34000 Montpellier",
+    "distance": 1.3,
+    "features": [
+      "alternatif",
+      "concerts",
+      "boutonnet",
+      "underground",
+      "convivial"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "La Dune",
+    "type": "Club",
+    "address": "Palavas-les-Flots, 34250",
+    "distance": 12,
+    "features": [
+      "boite_club",
+      "plage",
+      "terrasse_ensoleillee",
+      "vue_mer",
+      "festif",
+      "cocktails_signature"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Les Enfants Rouges",
+    "type": "Bar restaurant",
+    "address": "3 Plan Duché, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "ecusson",
+      "bar_cocktails",
+      "tapas",
+      "terrasse",
+      "branche"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Le Fitzpatrick's",
+    "type": "Pub irlandais",
+    "address": "9 Place Saint-CÃ´me, 34000 Montpellier",
+    "distance": 0.2,
+    "features": [
+      "sport_tv",
+      "bar_bieres",
+      "convivial",
+      "comedie",
+      "pub"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Le Fizz",
+    "type": "Club",
+    "address": "Rue de Verdun, 34000 Montpellier",
+    "distance": 0.9,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "dj_set",
+      "electro",
+      "festif"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "La Fumerie",
+    "type": "Bar lounge",
+    "address": "Rue du Petit Saint-Jean, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "lounge",
+      "bar_cocktails",
+      "ecusson",
+      "cosy",
+      "chic"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Les Garçons",
+    "type": "Bar",
+    "address": "15 Rue des SÅ“urs Noires, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "ecusson",
+      "convivial",
+      "bar_cocktails",
+      "decontracte",
+      "festif"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Le Gazette Café",
+    "type": "Café culturel",
+    "address": "6 Rue Levat, 34000 Montpellier",
+    "distance": 1.1,
+    "features": [
+      "terrasse",
+      "gare",
+      "brasserie",
+      "cafe",
+      "convivial",
+      "concerts",
+      "cosy"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "halle tropisme",
+    "type": "Bar culturel",
+    "address": "121 Rue Fontcouverte, 34000 Montpellier",
+    "distance": 3,
+    "features": [
+      "figuerolles",
+      "bar_bieres",
+      "guinguette",
+      "speakeasy",
+      "cafe",
+      "tendance",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "decontracte",
+      "underground",
+      "terrasse",
+      "parking",
+      "afterwork",
+      "happy_hour",
+      "modere",
+      "anime_sonore",
+      "couples",
+      "famille_enfants",
+      "groupe_petit",
+      "groupe_moyen",
+      "groupe_grand",
+      "afterwork_parfait",
+      "le_sunset",
+      "bieres_artisanales",
+      "bieres_locales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "sans_alcool",
+      "cafe",
+      "the",
+      "planches",
+      "tapas",
+      "vegetarien",
+      "burgers",
+      "pizzas",
+      "snacking",
+      "midi",
+      "apres_midi",
+      "soir",
+      "terrasse_ensoleillee",
+      "18_25",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "etudiants",
+      "rock",
+      "pop",
+      "electro",
+      "hip_hop",
+      "indie",
+      "metal",
+      "disco",
+      "rap",
+      "variee",
+      "karaoke",
+      "open_mic",
+      "dj_set",
+      "concerts",
+      "cours_creatifs",
+      "decontracte_service",
+      "amical",
+      "petanque",
+      "mange_debout",
+      "tables",
+      "plain_pied",
+      "toilettes_pmr"
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Halles Laissac",
+    "type": "Bar",
+    "address": "Arrêt observatoire Halles Laissac",
+    "distance": 0,
+    "features": [
+      "ecusson",
+      "cafe",
+      "calme",
+      "convivial",
+      "terrasse",
+      "afterwork",
+      "anime_sonore",
+      "couples",
+      "famille_enfants",
+      "groupe_petit",
+      "bieres_artisanales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "cafe",
+      "the",
+      "midi",
+      "apres_midi",
+      "terrasse_ensoleillee",
+      "18_25",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "etudiants",
+      "business",
+      "decontracte_service",
+      "amical",
+      "rapide",
+      "tables",
+      "comptoir",
+      "plain_pied"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Le Harts Bar",
+    "type": "Pub",
+    "address": "Rue de la Merci, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "ecusson",
+      "sport_tv",
+      "convivial"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Le Hopulus Brewpub",
+    "type": "Brasserie artisanale",
+    "address": "8 Rue Collot, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "brasserie",
+      "bieres_artisanales",
+      "comedie",
+      "planches",
+      "snacking"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Hossegor Bar",
+    "type": "Bar",
+    "address": "8 Rue de la Petite Loge, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_cocktails",
+      "festif",
+      "disco",
+      "comedie",
+      "decontracte"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "The Invader",
+    "type": "Bar geek",
+    "address": "5 Rue du Plan d'Agde, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "jeux",
+      "bar_cocktails",
+      "ecusson",
+      "convivial",
+      "alternatif"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "La Jalade",
+    "type": "Bar nature",
+    "address": "10 Rue de la Jalade, 34000 Montpellier",
+    "distance": 2,
+    "features": [
+      "calme",
+      "terrasse_ombragee",
+      "jardin",
+      "cosy",
+      "decontracte"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Le Jost",
+    "type": "Bar lounge",
+    "address": "8 Rue du Faubourg de la Saunerie, 34000 Montpellier",
+    "distance": 0.7,
+    "features": [
+      "bar_cocktails",
+      "cosy",
+      "gare",
+      "lounge",
+      "tendance"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Le Kaleido Bar",
+    "type": "Bar Ã  cocktails",
+    "address": "2 Rue Jules Latreilhe, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_cocktails",
+      "terrasse",
+      "comedie",
+      "cafe",
+      "tapas",
+      "dj_set"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Le Kiosque Verde Paradis",
+    "type": "Bar nature",
+    "address": "Quartier Arceaux, 34000 Montpellier",
+    "distance": 1,
+    "features": [
+      "jardin",
+      "terrasse_ensoleillee",
+      "calme",
+      "bar_vins",
+      "beaux_arts"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Madrediosa",
+    "type": "Bar lgbtqia+",
+    "address": "5 rue Belmont, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "beaux_arts",
+      "bar_bieres",
+      "bar_cocktails",
+      "tendance",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "decontracte",
+      "terrasse",
+      "afterwork",
+      "happy_hour",
+      "modere",
+      "anime_sonore",
+      "couples",
+      "groupe_petit",
+      "groupe_moyen",
+      "lgbtqia",
+      "cocktails_signature",
+      "bieres_artisanales",
+      "bieres_locales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "cafe",
+      "the",
+      "planches",
+      "tapas",
+      "vegetarien",
+      "snacking",
+      "terrasse_ombragee",
+      "18_25",
+      "25_35",
+      "tous_ages",
+      "etudiants",
+      "electro",
+      "disco",
+      "variee",
+      "karaoke",
+      "stand_up",
+      "dj_set",
+      "quiz",
+      "decontracte_service",
+      "amical",
+      "bancs",
+      "tables",
+      "plain_pied",
+      "toilettes_pmr"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "La Maison Fleurie",
+    "type": "Bar Ã  cocktails",
+    "address": "Rue du Faubourg Figuerolles, 34000 Montpellier",
+    "distance": 1.4,
+    "features": [
+      "bar_cocktails",
+      "jardin",
+      "terrasse_ombragee",
+      "calme",
+      "cosy"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Les Marchands",
+    "type": "Bar Ã  vin",
+    "address": "8 Place Alexandre Laissac, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "bar_vins",
+      "ecusson",
+      "cosy",
+      "planches",
+      "vins_naturels"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Le Mas de Couran",
+    "type": "Restaurant",
+    "address": "Chemin de Soriech, 34970 Lattes",
+    "distance": 4,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "festif",
+      "dj_set",
+      "lattes",
+      "plage",
+      "terrasse_ensoleillee",
+      "brasserie",
+      "bar_cocktails"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Mas du Cheval",
+    "type": "Bar",
+    "address": "Avenue de l'Agau, 34970 Lattes",
+    "distance": 3.5,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "tapas",
+      "festif",
+      "dj_set",
+      "lattes",
+      "bar_cocktails"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Le Mas du Roux",
+    "type": "Bar",
+    "address": "Lattes, 34970",
+    "distance": 3.5,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "festif",
+      "lattes",
+      "bar_cocktails"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Mi Barrio",
+    "type": "Bar latino",
+    "address": "Rue du Plan d'Agde, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "latino",
+      "bar_cocktails",
+      "ecusson",
+      "festif",
+      "tapas"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Le Milk Club",
+    "type": "Club",
+    "address": "Rue Ferdinand Fabre, 34000 Montpellier",
+    "distance": 1,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "dj_set",
+      "festif",
+      "electro"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Le Mio Bar",
+    "type": "Bar Ã  cocktails",
+    "address": "11 Rue des Balances, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "bar_cocktails",
+      "gin",
+      "cocktails_signature",
+      "lounge",
+      "terrasse"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Le Miranov",
+    "type": "Rooftop",
+    "address": "455 Avenue du Professeur Antonin Balmès, 34000 Montpellier",
+    "distance": 2.5,
+    "features": [
+      "rives_lez",
+      "rooftop",
+      "cosy",
+      "calme",
+      "convivial",
+      "chic",
+      "terrasse",
+      "afterwork",
+      "happy_hour",
+      "calme_sonore",
+      "couples",
+      "groupe_petit",
+      "afterwork_parfait",
+      "rendez_vous",
+      "le_sunset",
+      "cocktails_signature",
+      "bieres_artisanales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "spiritueux",
+      "cafe",
+      "the",
+      "planches",
+      "tapas",
+      "vegetarien",
+      "snacking",
+      "apres_midi",
+      "soir",
+      "terrasse_ensoleillee",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "tous_ages",
+      "business",
+      "jazz",
+      "lounge_music",
+      "chic",
+      "attentionne",
+      "mange_debout",
+      "ascenseur",
+      "toilettes_pmr"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Les momes",
+    "type": "Bar festif",
+    "address": "Place du marché aux fleurs",
+    "distance": 0,
+    "features": [
+      "ecusson",
+      "bar_dansant",
+      "tendance",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "chic",
+      "anime_sonore",
+      "couples",
+      "groupe_petit",
+      "groupe_moyen",
+      "evenements_prives",
+      "anniversaire",
+      "rendez_vous",
+      "cocktails_signature",
+      "bieres_artisanales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "prosecco",
+      "sans_alcool",
+      "mocktails",
+      "spiritueux",
+      "shots",
+      "planches",
+      "tapas",
+      "carte_complete",
+      "menus",
+      "18_25",
+      "25_35",
+      "35_50",
+      "electro",
+      "variete",
+      "disco",
+      "chic",
+      "mange_debout",
+      "tables",
+      "rampe"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Le Moom",
+    "type": "Bar dansant",
+    "address": "Lattes, 34970",
+    "distance": 3.5,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "festif",
+      "lattes",
+      "bar_cocktails"
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Le Mosquito",
+    "type": "Bar latino",
+    "address": "1 Rue du Plan d'Agde, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "bar_cocktails",
+      "latino",
+      "dancefloor",
+      "ecusson",
+      "festif",
+      "dj_set"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "La Muchacha",
+    "type": "Bar latino",
+    "address": "Rue de la Loge, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "latino",
+      "bar_cocktails",
+      "ecusson",
+      "festif",
+      "convivial"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Le Mustang",
+    "type": "Bar américain",
+    "address": "Rue du Grand Saint-Jean, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "ecusson",
+      "bar_cocktails",
+      "festif",
+      "rock",
+      "convivial"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "La Notte",
+    "type": "Bar Ã  vin",
+    "address": "Rue de l'Aiguillerie, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "bar_vins",
+      "vins_naturels",
+      "ecusson",
+      "cosy",
+      "planches"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Le Novelty",
+    "type": "Bar",
+    "address": "Rue de Verdun, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "bar_cocktails",
+      "festif",
+      "convivial",
+      "ecusson"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Le O'Sullivan",
+    "type": "Pub irlandais",
+    "address": "Boulevard du Jeu de Paume, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "sport_tv",
+      "comedie",
+      "festif"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Le Palace",
+    "type": "Bar Ã  pastis",
+    "address": "Montpellier, 34000",
+    "distance": 0.5,
+    "features": [
+      "bar_cocktails",
+      "terrasse",
+      "pizzas",
+      "sport_tv",
+      "babyfoot",
+      "flechettes"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "La Pampa Sauvage",
+    "type": "Bar",
+    "address": "2400 Route de Pérols, 34970 Lattes",
+    "distance": 5,
+    "features": [
+      "bar_cocktails",
+      "snacking",
+      "disco",
+      "terrasse_ensoleillee",
+      "vue_ville"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Le Panama",
+    "type": "Night Club",
+    "address": "Rue de la République, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "boite_club",
+      "dancefloor",
+      "dj_set",
+      "chic",
+      "festif"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Le Parfum",
+    "type": "Bar Ã  cocktails",
+    "address": "55 Rue de la Cavalerie, 34000 Montpellier",
+    "distance": 1,
+    "features": [
+      "bar_cocktails",
+      "cocktails_signature",
+      "cosy",
+      "chic",
+      "romantique"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "The Peacock",
+    "type": "Pub anglais",
+    "address": "Rue de la Merci, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "ecusson",
+      "sport_tv",
+      "convivial"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Plein Sud",
+    "type": "Bar restaurant",
+    "address": "Port Marianne, 34000 Montpellier",
+    "distance": 2,
+    "features": [
+      "terrasse_ensoleillee",
+      "bar_cocktails",
+      "port_marianne",
+      "vue_ville",
+      "brunch"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Popular Brewing",
+    "type": "Brewpub",
+    "address": "14 rue Pila Saint Gely, 34000 Montpellier",
+    "distance": 0.2,
+    "features": [
+      "terrasse",
+      "jeux",
+      "ecusson",
+      "bar_bieres",
+      "rock",
+      "indie",
+      "convivial",
+      "cosy",
+      "decontracte"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Pousse Pas Mémée Dans La Vigne",
+    "type": "Bar Ã  vin",
+    "address": "Rue de l'Aiguillerie, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "bar_vins",
+      "ecusson",
+      "convivial"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Le Rebuffy",
+    "type": "Bar chill",
+    "address": "3 Rue Rebuffy, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "bar_cocktails",
+      "terrasse",
+      "ecusson",
+      "calme",
+      "cosy",
+      "decontracte"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Le Redline",
+    "type": "Bar comédie club",
+    "address": "5 rue des Teissiers, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "rock",
+      "concerts",
+      "underground",
+      "festif",
+      "metal"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Le Réservoir",
+    "type": "Bar Ã  bières",
+    "address": "55 Rue de Montels Saint-Pierre, 34070 Montpellier",
+    "distance": 2,
+    "features": [
+      "bar_bieres",
+      "quiz",
+      "karaoke"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Le Rhum Runner",
+    "type": "Bar Ã  rhum",
+    "address": "Rue des Trésoriers de France, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "rhum",
+      "bar_cocktails",
+      "ecusson",
+      "festif",
+      "tropical"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Le Rockstore",
+    "type": "Bar Rock / Concert",
+    "address": "20 Rue de Verdun, 34000 Montpellier",
+    "distance": 0.8,
+    "features": [
+      "concerts",
+      "rock",
+      "underground",
+      "ecusson",
+      "festif",
+      "metal"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Le Saint Roch",
+    "type": "Bar",
+    "address": "Quartier Saint-Roch, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "convivial",
+      "bar_bieres",
+      "terrasse",
+      "decontracte"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Le Secco",
+    "type": "Bar Ã  vin",
+    "address": "Rue de l'Aiguillerie, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "bar_vins",
+      "vins_naturels",
+      "ecusson",
+      "cosy",
+      "planches",
+      "brunch",
+      "festif"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "The Shakespeare",
+    "type": "Pub anglais",
+    "address": "Rue de la Merci, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "bieres_artisanales",
+      "pub",
+      "ecusson",
+      "terrasse",
+      "wifi",
+      "convivial"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Le Smash Bar",
+    "type": "Bar Ã  cocktails",
+    "address": "Rue du Petit Saint-Jean, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "bar_cocktails",
+      "cocktails_signature",
+      "ecusson",
+      "festif",
+      "tendance"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Le St Roch",
+    "type": "Bar Ã  tapas",
+    "address": "22 Rue du Petit Saint-Jean, 34000 Montpellier",
+    "distance": 0.4,
+    "features": [
+      "bar_vins",
+      "tapas",
+      "ecusson",
+      "convivial",
+      "cosy"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Les Super Vedettes",
+    "type": "Bar concert",
+    "address": "4 Place des Beaux-Arts, 34000 Montpellier",
+    "distance": 1,
+    "features": [
+      "concerts",
+      "indie",
+      "alternatif",
+      "rock",
+      "festif",
+      "sport_tv",
+      "terrasse_ombragee"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Le Tarbrew",
+    "type": "Bar Ã  bières",
+    "address": "20 Rue du Docteur Pezat, 34000 Montpellier",
+    "distance": 1.3,
+    "features": [
+      "boutonnet",
+      "bar_bieres",
+      "pub",
+      "brasserie",
+      "festif",
+      "anime",
+      "convivial",
+      "branche",
+      "terrasse",
+      "afterwork",
+      "happy_hour",
+      "modere",
+      "anime_sonore",
+      "tres_bruyant",
+      "groupe_petit",
+      "groupe_moyen",
+      "groupe_grand",
+      "afterwork_parfait",
+      "bieres_artisanales",
+      "bieres_locales",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "sans_alcool",
+      "cafe",
+      "the",
+      "terrasse_ombragee",
+      "18_25",
+      "25_35",
+      "etudiants",
+      "rock",
+      "variee",
+      "karaoke",
+      "quiz",
+      "decontracte_service",
+      "amical",
+      "au_comptoir",
+      "flechettes",
+      "jeux",
+      "tables"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "La Terraza",
+    "type": "Bar terrasse",
+    "address": "Place de la Comédie, 34000 Montpellier",
+    "distance": 0.1,
+    "features": [
+      "terrasse",
+      "comedie",
+      "bar_cocktails",
+      "vue_ville",
+      "festif"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Le Times",
+    "type": "Pub",
+    "address": "Rue de la Loge, 34000 Montpellier",
+    "distance": 0.3,
+    "features": [
+      "pub",
+      "bar_bieres",
+      "ecusson",
+      "sport_tv",
+      "convivial"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Le Toit Toit Mon Toit",
+    "type": "Rooftop bar",
+    "address": "Antigone, 34000 Montpellier",
+    "distance": 1.5,
+    "features": [
+      "rooftop",
+      "vue_ville",
+      "terrasse_ensoleillee",
+      "bar_cocktails",
+      "chic"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Le Trinque Fougasse",
+    "type": "Bar Ã  vin",
+    "address": "1 Rue de la Galéra, 34000 Montpellier",
+    "distance": 1.2,
+    "features": [
+      "bar_vins",
+      "tapas",
+      "terrasse_ensoleillee",
+      "port_marianne",
+      "vins_naturels",
+      "planches"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Le Triskell",
+    "type": "Bar breton",
+    "address": "Place Candolle, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "terrasse",
+      "ecusson",
+      "bar_bieres",
+      "cafe",
+      "rock",
+      "convivial",
+      "cosy",
+      "calme"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Le Tub",
+    "type": "Bar à  cocktails",
+    "address": "6 Rue du Petit Scel, 34000 Montpellier",
+    "distance": 0.5,
+    "features": [
+      "ecusson",
+      "bar_cocktails",
+      "speakeasy",
+      "cosy",
+      "tendance",
+      "romantique",
+      "calme",
+      "convivial",
+      "chic",
+      "calme_sonore",
+      "modere",
+      "couples",
+      "groupe_petit",
+      "rendez_vous",
+      "cocktails_signature",
+      "whiskies",
+      "rhum",
+      "gins",
+      "mocktails",
+      "tapas",
+      "snacking",
+      "25_35",
+      "35_50",
+      "tous_ages",
+      "lounge_music",
+      "electro",
+      "cours_creatifs",
+      "chic",
+      "attentionne",
+      "mange_debout",
+      "tables",
+      "comptoir"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Le V&B",
+    "type": "Bar Ã  bières",
+    "address": "9 Allée du Levant, 34970 Lattes",
+    "distance": 4,
+    "features": [
+      "bar_bieres",
+      "bieres_artisanales",
+      "planches",
+      "convivial"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Le Verre Ã  Soi",
+    "type": "Bar Ã  vin",
+    "address": "17 Rue Saint-Guilhem, 34000 Montpellier",
+    "distance": 0.6,
+    "features": [
+      "bar_vins",
+      "ecusson",
+      "cosy"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Le VR Ã  Vin",
+    "type": "Bar Ã  vin",
+    "address": "468 Rue de la Croix Verte, 34090 Montpellier",
+    "distance": 2.8,
+    "features": [
+      "bar_vins",
+      "boutonnet",
+      "cosy"
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Le Zèbre Bleu",
+    "type": "Bar musical",
+    "address": "Lieu‑dit La Calade, Route de Palavas, 34970 Lattes",
+    "distance": 3.5,
+    "features": [
+      "lattes",
+      "bar_cocktails",
+      "brasserie",
+      "bar_dansant",
+      "festif",
+      "anime",
+      "convivial",
+      "chic",
+      "terrasse",
+      "parking",
+      "anime_sonore",
+      "tres_bruyant",
+      "groupe_petit",
+      "groupe_moyen",
+      "groupe_grand",
+      "anniversaire",
+      "craft",
+      "whiskies",
+      "rhum",
+      "gins",
+      "sans_alcool",
+      "spiritueux",
+      "planches",
+      "tapas",
+      "snacking",
+      "25_35",
+      "35_50",
+      "50_plus",
+      "variete",
+      "disco",
+      "rap",
+      "variee",
+      "dj_set",
+      "decontracte_service",
+      "mange_debout",
+      "plain_pied",
+      "toilettes_pmr"
+    ]
+  }
+]
