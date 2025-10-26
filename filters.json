@@ -1,0 +1,687 @@
+{
+  "quartiers": [
+    {
+      "id": "ecusson",
+      "label": "🛡️ Écusson"
+    },
+    {
+      "id": "antigone",
+      "label": "🏛️ Antigone"
+    },
+    {
+      "id": "comedie",
+      "label": "🎭 Comédie"
+    },
+    {
+      "id": "gare",
+      "label": "🚂 Gare"
+    },
+    {
+      "id": "beaux_arts",
+      "label": "🎨 Beaux-Arts"
+    },
+    {
+      "id": "port_marianne",
+      "label": "⚓ Port Marianne"
+    },
+    {
+      "id": "rives_lez",
+      "label": "🏞️ Rives du Lez"
+    },
+    {
+      "id": "hopitaux_fac",
+      "label": "🏫 Hôpitaux-Facultés"
+    },
+    {
+      "id": "peyrou",
+      "label": "🏰 Peyrou"
+    },
+    {
+      "id": "plage",
+      "label": "🏖️ Plage"
+    },
+    {
+      "id": "figuerolles",
+      "label": "🏘️ Figuerolles"
+    },
+    {
+      "id": "boutonnet",
+      "label": "🌳 Boutonnet"
+    },
+    {
+      "id": "lattes",
+      "label": "🏖️ Lattes"
+    }
+  ],
+  "types": [
+    {
+      "id": "bar_bieres",
+      "label": "🍺 Bar à bières"
+    },
+    {
+      "id": "bar_vins",
+      "label": "🍷 Bar à vins"
+    },
+    {
+      "id": "bar_cocktails",
+      "label": "🍸 Bar à cocktails"
+    },
+    {
+      "id": "pub",
+      "label": "🍻 Pub"
+    },
+    {
+      "id": "brasserie",
+      "label": "🏭 Brasserie"
+    },
+    {
+      "id": "cave_vin",
+      "label": "🍇 Cave à vin"
+    },
+    {
+      "id": "guinguette",
+      "label": "🪕 Guinguette"
+    },
+    {
+      "id": "speakeasy",
+      "label": "🤫 Speakeasy"
+    },
+    {
+      "id": "sport_tv",
+      "label": "⚽ Sports bar"
+    },
+    {
+      "id": "rooftop",
+      "label": "🏙️ Rooftop"
+    },
+    {
+      "id": "lounge",
+      "label": "🛋️ Lounge"
+    },
+    {
+      "id": "boite_club",
+      "label": "💃 Boîte/Club"
+    },
+    {
+      "id": "cafe",
+      "label": "☕ Café"
+    },
+    {
+      "id": "bar_dansant",
+      "label": "💃 Bar dansant",
+      "custom": true
+    }
+  ],
+  "ambiances": [
+    {
+      "id": "cosy",
+      "label": "🛋️ Cosy"
+    },
+    {
+      "id": "tendance",
+      "label": "✨ Tendance"
+    },
+    {
+      "id": "romantique",
+      "label": "❤️ Romantique"
+    },
+    {
+      "id": "festif",
+      "label": "🎉 Festif"
+    },
+    {
+      "id": "calme",
+      "label": "🧘 Calme"
+    },
+    {
+      "id": "anime",
+      "label": "💃 Animé"
+    },
+    {
+      "id": "convivial",
+      "label": "🤗 Convivial"
+    },
+    {
+      "id": "branche",
+      "label": "😎 Branché"
+    },
+    {
+      "id": "alternatif",
+      "label": "🎸 Alternatif"
+    },
+    {
+      "id": "chic",
+      "label": "🎩 Chic"
+    },
+    {
+      "id": "decontracte",
+      "label": "👕 Décontracté"
+    },
+    {
+      "id": "underground",
+      "label": "🌑 Underground"
+    },
+    {
+      "id": "intime",
+      "label": "🤫 Intime"
+    }
+  ],
+  "caracteristiques_rapides": [
+    {
+      "id": "terrasse",
+      "label": "☀️ Terrasse"
+    },
+    {
+      "id": "wifi",
+      "label": "📶 WiFi"
+    },
+    {
+      "id": "parking",
+      "label": "🅿️ Parking"
+    },
+    {
+      "id": "afterwork",
+      "label": "💼 Afterwork"
+    },
+    {
+      "id": "tv",
+      "label": "📺 Écrans TV"
+    },
+    {
+      "id": "happy_hour",
+      "label": "🥂 Happy Hour"
+    }
+  ],
+  "niveau_sonore": [
+    {
+      "id": "silencieux",
+      "label": "🔇 Silencieux"
+    },
+    {
+      "id": "calme_sonore",
+      "label": "🔉 Calme"
+    },
+    {
+      "id": "modere",
+      "label": "🔊 Modéré"
+    },
+    {
+      "id": "anime_sonore",
+      "label": "🔢 Animé"
+    },
+    {
+      "id": "tres_bruyant",
+      "label": "🔊🔊 Très bruyant"
+    }
+  ],
+  "parfait_pour": [
+    {
+      "id": "couples",
+      "label": "❤️ Couples"
+    },
+    {
+      "id": "famille_enfants",
+      "label": "👨‍👩‍👧 Famille avec enfants"
+    },
+    {
+      "id": "groupe_petit",
+      "label": "👤 Groupe < 5"
+    },
+    {
+      "id": "groupe_moyen",
+      "label": "👥 Groupe 5-10"
+    },
+    {
+      "id": "groupe_grand",
+      "label": "👨‍👩‍👧‍👦 Groupe > 10"
+    },
+    {
+      "id": "evenements_prives",
+      "label": "🎊 Événements privés"
+    },
+    {
+      "id": "afterwork_parfait",
+      "label": "💼 Afterwork"
+    },
+    {
+      "id": "anniversaire",
+      "label": "🎂 Anniversaire"
+    },
+    {
+      "id": "solo",
+      "label": "🧑 Solo"
+    },
+    {
+      "id": "rendez_vous",
+      "label": "💑 Rendez-vous"
+    },
+    {
+      "id": "le_sunset",
+      "label": "☀️ le sunset",
+      "custom": true
+    },
+    {
+      "id": "lgbtqia",
+      "label": "💜 lgbtqia+",
+      "custom": true
+    }
+  ],
+  "boissons": [
+    {
+      "id": "cocktails_signature",
+      "label": "🍸 Cocktails"
+    },
+    {
+      "id": "vins_naturels",
+      "label": "🍷 Vins naturels"
+    },
+    {
+      "id": "bieres_artisanales",
+      "label": "🍺 Bières artisanales"
+    },
+    {
+      "id": "bieres_locales",
+      "label": "🍺 Bières artisanales locales"
+    },
+    {
+      "id": "craft",
+      "label": "🍻 Craft"
+    },
+    {
+      "id": "whiskies",
+      "label": "🥃 Whiskies"
+    },
+    {
+      "id": "rhum",
+      "label": "🏝️ Rhums"
+    },
+    {
+      "id": "gins",
+      "label": "🌿 Gins"
+    },
+    {
+      "id": "prosecco",
+      "label": "🥂 Prosecco"
+    },
+    {
+      "id": "sans_alcool",
+      "label": "🧃 Sans alcool"
+    },
+    {
+      "id": "mocktails",
+      "label": "🥤 Mocktails"
+    },
+    {
+      "id": "spiritueux",
+      "label": "🥃 Spiritueux"
+    },
+    {
+      "id": "shots",
+      "label": "🥃 Shots"
+    },
+    {
+      "id": "cafe",
+      "label": "☕ Café"
+    },
+    {
+      "id": "the",
+      "label": "🍵 Thé"
+    }
+  ],
+  "nourriture": [
+    {
+      "id": "planches",
+      "label": "🧀 Planches"
+    },
+    {
+      "id": "tapas",
+      "label": "🥘 Tapas"
+    },
+    {
+      "id": "vegan",
+      "label": "🌱 Végan"
+    },
+    {
+      "id": "vegetarien",
+      "label": "🥦 Végétarien"
+    },
+    {
+      "id": "gluten_free",
+      "label": "🌾 Sans gluten"
+    },
+    {
+      "id": "burgers",
+      "label": "🍔 Burgers"
+    },
+    {
+      "id": "carte_complete",
+      "label": "📋 Carte complète"
+    },
+    {
+      "id": "menus",
+      "label": "📜 Menus"
+    },
+    {
+      "id": "brunch",
+      "label": "🥐 Brunch"
+    },
+    {
+      "id": "pizzas",
+      "label": "🍕 Pizzas"
+    },
+    {
+      "id": "snacking",
+      "label": "🥪 Snacking"
+    }
+  ],
+  "ensoleillement": [
+    {
+      "id": "jamais",
+      "label": "🌑 Jamais"
+    },
+    {
+      "id": "matin",
+      "label": "🌅 Matin"
+    },
+    {
+      "id": "midi",
+      "label": "🌞 Midi"
+    },
+    {
+      "id": "apres_midi",
+      "label": "🌇 Après-midi"
+    },
+    {
+      "id": "soir",
+      "label": "🌆 Soir"
+    },
+    {
+      "id": "terrasse_ensoleillee",
+      "label": "☀️ Terrasse ensoleillée"
+    },
+    {
+      "id": "terrasse_ombragee",
+      "label": "🌳 Terrasse ombragée"
+    }
+  ],
+  "clientele": [
+    {
+      "id": "18_25",
+      "label": "🧑 18-25 ans"
+    },
+    {
+      "id": "25_35",
+      "label": "👨 25-35 ans"
+    },
+    {
+      "id": "35_50",
+      "label": "👩 35-50 ans"
+    },
+    {
+      "id": "50_plus",
+      "label": "🧔 50+ ans"
+    },
+    {
+      "id": "tous_ages",
+      "label": "👪 Tous âges"
+    },
+    {
+      "id": "etudiants",
+      "label": "🎓 Étudiants"
+    },
+    {
+      "id": "business",
+      "label": "💼 Business"
+    }
+  ],
+  "musiques": [
+    {
+      "id": "rock",
+      "label": "🎸 Rock"
+    },
+    {
+      "id": "pop",
+      "label": "🎤 Pop"
+    },
+    {
+      "id": "jazz",
+      "label": "🎷 Jazz"
+    },
+    {
+      "id": "lounge_music",
+      "label": "🎹 Lounge"
+    },
+    {
+      "id": "electro",
+      "label": "🎧 Électro"
+    },
+    {
+      "id": "techno",
+      "label": "💿 Techno"
+    },
+    {
+      "id": "hip_hop",
+      "label": "🎙️ Hip-Hop"
+    },
+    {
+      "id": "indie",
+      "label": "🎵 Indie"
+    },
+    {
+      "id": "classique",
+      "label": "🎻 Classique"
+    },
+    {
+      "id": "variete",
+      "label": "📻 Variété"
+    },
+    {
+      "id": "chanson_francaise",
+      "label": "🇫🇷 Chanson française"
+    },
+    {
+      "id": "latino",
+      "label": "🕺 Latino"
+    },
+    {
+      "id": "metal",
+      "label": "🤘 Metal"
+    },
+    {
+      "id": "disco",
+      "label": "🪩 Disco"
+    },
+    {
+      "id": "rap",
+      "label": "🎧 Rap",
+      "custom": true
+    },
+    {
+      "id": "variee",
+      "label": "🎶 Variée",
+      "custom": true
+    }
+  ],
+  "evenements": [
+    {
+      "id": "karaoke",
+      "label": "🎤 Karaoké"
+    },
+    {
+      "id": "open_mic",
+      "label": "🎭 Scène ouverte"
+    },
+    {
+      "id": "stand_up",
+      "label": "🎪 Stand-up"
+    },
+    {
+      "id": "dj_set",
+      "label": "🎧 DJ Set"
+    },
+    {
+      "id": "concerts",
+      "label": "🎵 Concerts"
+    },
+    {
+      "id": "quiz",
+      "label": "❓ Quiz"
+    },
+    {
+      "id": "retransmissions",
+      "label": "📺 Retransmissions sport"
+    },
+    {
+      "id": "degustation",
+      "label": "🍷 Dégustations"
+    },
+    {
+      "id": "cours_cocktails",
+      "label": "🍹 Cours de cocktails"
+    },
+    {
+      "id": "cours_creatifs",
+      "label": "🎨 cours créatifs",
+      "custom": true
+    },
+    {
+      "id": "cours_de_salsa",
+      "label": "💃 cours de salsa",
+      "custom": true
+    },
+    {
+      "id": "cours_de_brassage",
+      "label": "🍺 cours de brassage",
+      "custom": true
+    }
+  ],
+  "service": [
+    {
+      "id": "chic",
+      "label": "✨ Chic"
+    },
+    {
+      "id": "familial",
+      "label": "👨‍👩‍👧‍👦 Familial"
+    },
+    {
+      "id": "decontracte_service",
+      "label": "😎 Décontracté"
+    },
+    {
+      "id": "amical",
+      "label": "🤝 Amical"
+    },
+    {
+      "id": "rapide",
+      "label": "⚡ Rapide"
+    },
+    {
+      "id": "attentionne",
+      "label": "🤗 Attentionné"
+    },
+    {
+      "id": "au_comptoir",
+      "label": "🍻 au comptoir",
+      "custom": true
+    }
+  ],
+  "propositions": [
+    {
+      "id": "babyfoot",
+      "label": "⚽ Babyfoot"
+    },
+    {
+      "id": "flechettes",
+      "label": "🎯 Fléchettes"
+    },
+    {
+      "id": "billard",
+      "label": "🎱 Billard"
+    },
+    {
+      "id": "jeux_societe",
+      "label": "🎲 Jeux de société"
+    },
+    {
+      "id": "jeux_video",
+      "label": "🎮 Jeux vidéo"
+    },
+    {
+      "id": "jeux",
+      "label": "🎮 Jeux"
+    },
+    {
+      "id": "galerie_art",
+      "label": "🎨 Galerie d'art"
+    },
+    {
+      "id": "jeux_enfants",
+      "label": "🧸 Jeux pour enfants"
+    },
+    {
+      "id": "espace_jeux_exterieur",
+      "label": "🛝 Près d'un espace jeux enfants extérieurs"
+    },
+    {
+      "id": "petanque",
+      "label": "🎯 Pétanque"
+    }
+  ],
+  "assise": [
+    {
+      "id": "canapes",
+      "label": "🛋️ Canapés"
+    },
+    {
+      "id": "bancs",
+      "label": "🪑 Bancs"
+    },
+    {
+      "id": "mange_debout",
+      "label": "🧍 Mange-debout"
+    },
+    {
+      "id": "tables",
+      "label": "🍽️ Tables"
+    },
+    {
+      "id": "comptoir",
+      "label": "🧇 Comptoir"
+    },
+    {
+      "id": "poufs",
+      "label": "💺 Poufs"
+    },
+    {
+      "id": "fauteuils",
+      "label": "🪑 Fauteuils"
+    }
+  ],
+  "acces_pmr": [
+    {
+      "id": "plain_pied",
+      "label": "🚪 Accès de plain-pied"
+    },
+    {
+      "id": "rampe",
+      "label": "♿ Rampe d'accès"
+    },
+    {
+      "id": "ascenseur",
+      "label": "🔼 Ascenseur"
+    },
+    {
+      "id": "toilettes_pmr",
+      "label": "🚻 Toilettes adaptées"
+    },
+    {
+      "id": "personnel_forme",
+      "label": "👥 Personnel formé"
+    },
+    {
+      "id": "places_reservees",
+      "label": "🪑 Places réservées"
+    }
+  ]
+}
