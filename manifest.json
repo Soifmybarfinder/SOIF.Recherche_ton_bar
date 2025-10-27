@@ -1,0 +1,60 @@
+{
+  "name": "SOIF - MyBarFinder Montpellier",
+  "short_name": "SOIF",
+  "description": "Découvrez les meilleurs bars de Montpellier - 118 bars authentiques avec filtres avancés et Google Maps",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a0f24",
+  "theme_color": "#ff006e",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle", "food", "entertainment"],
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Rechercher un bar",
+      "short_name": "Recherche",
+      "description": "Rechercher parmi 118 bars",
+      "url": "/?action=search",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Surprends-moi !",
+      "short_name": "Aléatoire",
+      "description": "Découvrir un bar au hasard",
+      "url": "/?action=random",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
